@@ -1,24 +1,59 @@
 <header>
-    <img id="logo" src="https://cdn1.valuegaia.com.br/gaiasite/watermark/56510/7650fce9c2774af8fdab344d12a3ea01-LOGO%20VERIFIQ.png" alt="Logo VerifiQ">
-    <ul id="botoes-header">
-        <li><button class="botao-header">Sobre</button></li>
-        <li><button class="botao-header">Receba ajuda</button></li>
-        <li><button class="botao-header">Vote</button></li>
-        <li><button class="botao-header">Login/Cadastro</button></li>
-    </ul>
+  <img
+    id="logo"
+    src="https://cdn1.valuegaia.com.br/gaiasite/watermark/56510/7650fce9c2774af8fdab344d12a3ea01-LOGO%20VERIFIQ.png"
+    alt="Logo VerifiQ"
+  />
+  <ul id="botoes-header">
+    <li>
+      <button class="botao-header" mat-fab extended>
+        <mat-icon>info</mat-icon>
+        Sobre
+      </button>
+    </li>
+    <li>
+      <button class="botao-header" mat-fab extended>
+        <mat-icon>handshake</mat-icon>
+        Receba ajuda
+      </button>
+    </li>
+    <li>
+      <button class="botao-header" mat-fab extended>
+        <mat-icon>swap_vert</mat-icon>
+        Vote
+      </button>
+    </li>
+    <li>
+      <button class="botao-header" mat-fab extended>
+        <mat-icon>account_circle</mat-icon>
+        Login/Cadastro
+      </button>
+    </li>
+  </ul>
 </header>
 <main>
-    <ul id="tela-inicio">
+  <ul id="tela-inicio">
+    <li class="item-inicio">
+      <ul id="ajuda-inicio">
+        <li><h1>Um título impactante</h1></li>
         <li>
-            <ul id="ajuda-inicio">
-                <li><h1>Um título impactante</h1></li>
-                <li><h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt maximus nibh, at fringilla velit interdum eu.</h2></li>
-                <li><button mat-button>Receba ajuda</button></li>
-            </ul>
+          <h2>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+            tincidunt maximus nibh, at fringilla velit interdum eu.
+          </h2>
         </li>
-        <li><img src="https://i.imgur.com/jlQN3kI.png" alt="Serpente em volta de um smartphone"></li>
-    </ul>
-    <button mat-fab id="botao-adicionar">
-        <mat-icon>add</mat-icon>
-    </button>
+        <li><button mat-button>Receba ajuda</button></li>
+      </ul>
+    </li>
+    <li class="item-inicio">
+      <img
+        id="img-inicio"
+        src="https://i.imgur.com/jlQN3kI.png"
+        alt="Serpente em volta de um smartphone"
+      />
+    </li>
+  </ul>
+  <button mat-fab id="botao-adicionar">
+    <mat-icon>add</mat-icon>
+  </button>
 </main>
