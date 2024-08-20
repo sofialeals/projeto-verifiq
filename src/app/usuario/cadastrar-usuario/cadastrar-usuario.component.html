@@ -1,0 +1,18 @@
+<form>
+    <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input matInput [(ngModel)]="usuario.cpf" name="cpf">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="usuario.nome" name="nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Nome de usuário</mat-label>
+        <input matInput [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario">
+    </mat-form-field>
+
+    <button mat-fab (click)="cadastrarUsuario()">Cadastrar</button>
+</form>

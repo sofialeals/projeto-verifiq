@@ -1,4 +1,37 @@
 {
-    "usuarios": [],
-    "postagens": []
-  }
+  "usuarios": [
+    {
+      "id": "7fd9",
+      "cpf": "123",
+      "nome": "",
+      "nomeUsuario": "",
+      "pontuacao": 0,
+      "postagens": []
+    },
+    {
+      "id": "70ad",
+      "cpf": "123",
+      "nome": "",
+      "nomeUsuario": "",
+      "pontuacao": 0,
+      "postagens": []
+    },
+    {
+      "id": "3b1f",
+      "cpf": "222",
+      "nome": "lucs",
+      "nomeUsuario": "",
+      "pontuacao": 0,
+      "postagens": []
+    },
+    {
+      "id": "97da",
+      "cpf": "222",
+      "nome": "",
+      "nomeUsuario": "",
+      "pontuacao": 0,
+      "postagens": []
+    }
+  ],
+  "postagens": []
+}

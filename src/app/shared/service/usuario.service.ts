@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
 import { UsuarioRest } from './rest.service';
 import { Usuario } from '../model/usuario';
 
@@ -10,20 +7,42 @@ import { Usuario } from '../model/usuario';
 })
 export class UsuarioService {
 
-  constructor(private rest: UsuarioRest) {
+  constructor(private rest: UsuarioRest) {}
+
+  inserir(usuario: Usuario): Usuario | null {
+    let usuarioInserido: Usuario | null = null;
+    let usuarioRetornado: boolean = this.buscar(usuario);
+
+    if(usuarioRetornado){
+      return null;
+    } else {
+      this.rest.inserir(usuario).subscribe(
+        {
+          next: usuarioRetornado => {
+            usuarioInserido = usuarioRetornado;
+          }
+        }
+      );
+      return usuarioInserido;
+    }
   }
 
-  
+  buscar(usuario: Usuario): boolean {
+    let usuarioRetornado: boolean = false;
 
-  inserir(usuario: Usuario) {
-    let usuarioInserir = null;
-
-    // Verificar se o usuário já existe
     this.rest.buscar(usuario.cpf).subscribe(
-      { next:usuarioDevolvido => usuarioInserir = usuarioDevolvido}
-      
-    )
-   
+      {
+        next: usuarioBuscado => {
+          if(usuarioBuscado.length === 0) {
+            usuarioRetornado = false;
+          } else {
+            usuarioRetornado = true;
+          }
+        }
+      }
+    );
+
+    return usuarioRetornado;
   }
   
 }

@@ -4,47 +4,50 @@ header {
     flex-direction: row;
     justify-content: space-between;
     padding: 1.5rem 4rem;
-}
-
-#logo {
+  }
+  
+  #logo {
     width: 100px;
     background-color: #ffffff;
     border-radius: 5rem;
     padding: 0.5rem 1rem;
-}
-
-#botoes-header {
+  }
+  
+  #botoes-header {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     align-content: center;
-}
-
-#botoes-header li {
+  }
+  
+  #botoes-header li {
     margin: 0 1rem;
-}
-
-.botao-header {
+  }
+  
+  .botao-header {
     font-size: 1rem;
     transition: 0.5s;
-    width: 7rem;
-    padding: 0.5rem 0;
     color: #ffffff;
-    border-bottom: 2px solid #ffffff00;
-}
-
-.botao-header:hover {
+    background-color: #ffffff00;
+    box-shadow: none;
+    border-radius: 5rem;
+    height: 3rem;
+    font-weight: bold;
+  }
+  
+  .botao-header:hover {
     transition: 0.5s;
-    border-bottom: 2px solid #ffffff;
-}
-
-main {
+    background-color: #ffffff00;
+    background-color: #40c288;
+  }
+  
+  main {
     background-color: #007048;
-}
-
-#botao-adicionar {
+  }
+  
+  #botao-adicionar {
     transition: 0.5s;
     position: fixed;
     bottom: 20px;
@@ -55,15 +58,16 @@ main {
     color: #ffffff;
     border: 2px solid #ffffff00;
     border-radius: 5rem;
-}
-
-#botao-adicionar:hover {
+  }
+  
+  #botao-adicionar:hover {
     transition: 0.5s;
     background-color: #40c288;
     border: 2px solid #ffffff;
-}
-
-#tela-inicio {
+  }
+  
+  #tela-inicio {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -72,46 +76,146 @@ main {
     align-content: center;
     color: #ffffff;
     padding: 3rem 0;
-}
-
-#tela-inicio li {
-    width: 50%;
+  }
+  
+  .item-inicio {
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
-}
-
-#ajuda-inicio {
+  }
+  
+  #ajuda-inicio {
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
-}
-
-#ajuda-inicio li {
+  }
+  
+  #ajuda-inicio li {
+    width: 80%;
     margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    align-content: center;
     justify-content: flex-start;
-}
-
-#ajuda-inicio h1 {
-    font-size: 2.2rem;
-}
-
-#ajuda-inicio h2 {
+  }
+  
+  #ajuda-inicio h1 {
+    font-size: 2.5rem;
+  }
+  
+  #ajuda-inicio h2 {
     font-size: 1.3rem;
-}
-
-#ajuda-inicio button {
+  }
+  
+  #ajuda-inicio button {
     transition: 0.5s;
     background-color: #33a673;
     color: #ffffff;
-    padding: 0.8rem 2rem;
+    padding: 1.5rem 3rem;
     border-radius: 5rem;
-    font-size: 1rem;
-}
-
-#ajuda-inicio button:hover {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  #ajuda-inicio button:hover {
     transition: 0.5s;
     background-color: #40c288;
-}
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    header {
+      flex-direction: column;
+      padding: 1.5rem 1rem;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+  
+    #logo {
+      margin-bottom: 1rem;
+    }
+  
+    #img-inicio {
+      width: 80%;
+    }
+  
+    #ajuda-inicio h1 {
+      font-size: 3vw;
+    }
+  
+    #ajuda-inicio h2 {
+      font-size: 2vw;
+    }
+  
+    #ajuda-inicio button {
+      font-size: 1.5vw;
+      width: 70%;
+      padding: 0;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    #botoes-header {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    #botoes-header li {
+      width: 100%;
+      margin: 0;
+    }
+  
+    .botao-header {
+      background-color: #fafafa;
+      width: 100%;
+      margin: 0.2rem 0;
+      border-radius: 0.5rem;
+      color: #000000;
+    }
+  
+    .botao-header:hover {
+      background-color: #fafafa;
+    }
+  
+    #tela-inicio {
+      flex-direction: column;
+      padding: 0;
+    }
+  
+    .item-inicio {
+      width: 100%;
+    }
+  
+    #img-inicio {
+      width: 70%;
+    }
+  
+    .item-inicio {
+      margin: 1rem 0;
+    }
+  
+    #ajuda-inicio li {
+      justify-content: center;
+      text-align: center;
+    }
+  
+    #ajuda-inicio h1 {
+      font-size: 8vw;
+    }
+  
+    #ajuda-inicio h2 {
+      font-size: 4vw;
+    }
+  
+    #ajuda-inicio button {
+      font-size: 3vw;
+      width: 50%;
+      padding: 3vw 0;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+  }

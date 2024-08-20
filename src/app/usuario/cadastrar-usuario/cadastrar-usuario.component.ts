@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Usuario } from '../../shared/model/usuario';
+import { UsuarioService } from '../../shared/service/usuario.service';
 
 @Component({
   selector: 'cadastrar-usuario',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './cadastrar-usuario.component.scss'
 })
 export class CadastrarUsuarioComponent {
+  usuario : Usuario = new Usuario("", "", "");
 
+  constructor(private service : UsuarioService){}
+
+  cadastrarUsuario(){
+    this.service.inserir(this.usuario);
+    this.usuario = new Usuario("", "", "");
+  }
 }

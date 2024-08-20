@@ -9,31 +9,26 @@ import { Observable } from 'rxjs';
 })
 
 export class UsuarioRest{
-  private http: HttpClient;
-
   rotaUsuarios = 'http://localhost:3000/usuarios';
     
-  constructor(http : HttpClient) {
-    this.http = http;
+  constructor(private http: HttpClient) {
+    
   }
 
   inserir(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.rotaUsuarios, usuario);
   }
 
-  buscar(cpf: string): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.rotaUsuarios}/${cpf}`);
+  buscar(cpf: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.rotaUsuarios}?cpf=${cpf}`);
   }
 }
 
 export class PostagemRest{
-  private http: HttpClient;
 
   rotaPostagens = 'http://localhost:3000/postagens';
     
-  constructor(http : HttpClient) {
-    this.http = http;
-  }
+  constructor(private http: HttpClient) {}
 
   inserir(postagem: Postagem): Observable<Postagem> {
     return this.http.post<Postagem>(this.rotaPostagens, postagem);
