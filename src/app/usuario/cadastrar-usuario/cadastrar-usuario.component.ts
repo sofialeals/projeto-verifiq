@@ -12,6 +12,10 @@ export class CadastrarUsuarioComponent {
 
   constructor(private service : UsuarioService){}
 
+  verificarUsername(){
+    // to do
+  }
+
   cadastrarUsuario(){
     this.service.inserir(this.usuario);
     this.usuario = new Usuario("", "", "", "");

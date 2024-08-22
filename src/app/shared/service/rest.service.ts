@@ -19,8 +19,12 @@ export class UsuarioRest{
     return this.http.post<Usuario>(this.rotaUsuarios, usuario);
   }
 
-  buscar(cpf: string): Observable<Usuario[]> {
+  buscarCpf(cpf: string): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.rotaUsuarios}?cpf=${cpf}`);
+  }
+
+  buscarUsername(username: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.rotaUsuarios}?nomeUsuario=${username}`);
   }
 }
 
