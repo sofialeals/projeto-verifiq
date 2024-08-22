@@ -14,5 +14,10 @@
         <input matInput [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario">
     </mat-form-field>
 
+    <mat-form-field>
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" [(ngModel)]="usuario.senha" name="senhaUsuario">
+    </mat-form-field>
+
     <button mat-fab (click)="cadastrarUsuario()">Cadastrar</button>
 </form>

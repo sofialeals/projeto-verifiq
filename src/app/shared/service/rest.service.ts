@@ -11,9 +11,9 @@ import { Observable } from 'rxjs';
 export class UsuarioRest{
   rotaUsuarios = 'http://localhost:3000/usuarios';
     
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(
+    private http: HttpClient
+  ) {}
 
   inserir(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.rotaUsuarios, usuario);

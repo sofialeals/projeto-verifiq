@@ -8,12 +8,12 @@ import { UsuarioService } from '../../shared/service/usuario.service';
   styleUrl: './cadastrar-usuario.component.scss'
 })
 export class CadastrarUsuarioComponent {
-  usuario : Usuario = new Usuario("", "", "");
+  usuario : Usuario = new Usuario("", "", "", "");
 
   constructor(private service : UsuarioService){}
 
   cadastrarUsuario(){
     this.service.inserir(this.usuario);
-    this.usuario = new Usuario("", "", "");
+    this.usuario = new Usuario("", "", "", "");
   }
 }
