@@ -8,6 +8,15 @@
       "senha": "123",
       "pontuacao": 0,
       "postagens": []
+    },
+    {
+      "id": "d92b",
+      "cpf": "222",
+      "nome": "so",
+      "nomeUsuario": "fia",
+      "senha": "123",
+      "pontuacao": 0,
+      "postagens": []
     }
   ],
   "postagens": []

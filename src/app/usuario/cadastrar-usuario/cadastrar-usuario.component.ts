@@ -17,7 +17,21 @@ export class CadastrarUsuarioComponent {
   }
 
   cadastrarUsuario(){
-    this.service.inserir(this.usuario);
-    this.usuario = new Usuario("", "", "", "");
+    this.service.inserir(this.usuario).subscribe(
+      {
+        next: usuarioInserido => {
+          if(usuarioInserido){
+            // informar que houve o cadastro
+            console.log("cadastrou");
+            this.usuario = new Usuario("", "", "", "");
+          } else {
+            // informar que nao inseriu
+            console.log("nõ cadastrou");
+            this.usuario = new Usuario("", "", "", "");
+          }
+        }
+      }
+    )
+    
   }
 }
