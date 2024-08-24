@@ -17,6 +17,15 @@
       "senha": "123",
       "pontuacao": 0,
       "postagens": []
+    },
+    {
+      "id": "b2d0",
+      "cpf": "897",
+      "nome": "guir",
+      "nomeUsuario": "guir",
+      "senha": "guir",
+      "pontuacao": 0,
+      "postagens": []
     }
   ],
   "postagens": []

@@ -15,32 +15,53 @@ export class UsuarioService {
     return this.rest.buscarCpf(usuario.cpf).pipe(
       switchMap(usuarioBuscado => {
         if(usuarioBuscado.length === 0) {
-          return this.rest.inserir(usuario);
+          return this.usernameExiste(usuario).pipe(
+            switchMap(resposta => {
+              if(resposta){
+                return this.rest.inserir(usuario);
+              } else {
+                return of(false);
+              }
+            }) 
+          )
         } else {
           return of(false);
         }
-      } 
-      )
+      }),
+      
     );
   }
 
-  usernameExiste(usuario: Usuario): boolean{
-    let usernameExiste: boolean = false;
 
-    this.rest.buscarUsername(usuario.nomeUsuario).subscribe(
-        {
-          next: usuarioEncontrado => {
-            if(usuarioEncontrado.length === 0){
-              usernameExiste = false;
-              return usernameExiste;
-            } else {
-              usernameExiste = true;
-              return usernameExiste;
-            }
-          }
+  usernameExiste(usuario: Usuario){
+    return this.rest.buscarUsername(usuario.nomeUsuario).pipe(
+      switchMap(usuarioBuscado => {
+        if(usuarioBuscado.length === 0) {
+          return of(true);
+        } else {
+          return of(false);
         }
-    )
+      })
+    );
+  }
 
-    return usernameExiste;
+  buscarUsuario(cpf: string) {
+    console.log("Entrei no buscar")
+    return this.rest.buscarCpf(cpf).pipe(
+      switchMap(usuarioBuscado => {
+        console.log(usuarioBuscado)
+        if(usuarioBuscado.length === 0){
+          console.log("Entrei no IF")
+          return of(false);
+        } else {
+          console.log("Entrei no ELSE")
+          return usuarioBuscado;
+        }
+      })
+    )
   }
 }
+
+
+
+

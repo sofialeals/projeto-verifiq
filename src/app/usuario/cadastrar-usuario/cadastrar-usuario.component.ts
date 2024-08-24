@@ -26,7 +26,7 @@ export class CadastrarUsuarioComponent {
             this.usuario = new Usuario("", "", "", "");
           } else {
             // informar que nao inseriu
-            console.log("nõ cadastrou");
+            console.log("não cadastrou");
             this.usuario = new Usuario("", "", "", "");
           }
         }

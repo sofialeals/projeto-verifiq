@@ -11,7 +11,7 @@
 
     <mat-form-field>
         <mat-label>Nome de usuário</mat-label>
-        <input matInput [(ngModel)]="usuario.nomeUsuario" name="nomeUsuario">
+        <input matInput [(ngModel)]="usuario.nomeUsuario" (change)="verificarUsername()" name="nomeUsuario">
     </mat-form-field>
 
     <mat-form-field>
