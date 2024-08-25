@@ -25,7 +25,7 @@ main {
   max-width: 400px;
 }
 
-.form-login {
+.form-cadastro {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 60%;
   display: flex;
@@ -43,12 +43,12 @@ main {
   font-size: 1rem;
 }
 
-.campo-login {
+.campo-cadastro {
   width: 50%;
   margin: 0.5rem 0;
 }
 
-.botao-login {
+.botao-cadastro {
   transition: 0.5s;
   width: 20%;
   padding: 1rem 0;
@@ -58,12 +58,12 @@ main {
   font-size: 1rem;
 }
 
-.botao-login:hover {
+.botao-log:hover {
   transition: 0.5s;
   background-color: #40c288;
 }
 
-.botao-cadastro {
+.botao-login {
   margin: 1rem 0;
   color: #ffffff;
   font-size: 1rem;
@@ -74,7 +74,7 @@ main {
     font-size: 1.5vw;
   }
 
-  .botao-login {
+  .botao-cadastro {
     width: 50%;
     padding: 1.5vw 0;
     margin: 1vw 0;
@@ -82,7 +82,7 @@ main {
     font-weight: bold;
   }
 
-  .botao-cadastro {
+  .botao-login {
     margin: 1vw 0;
     font-size: 1.4vw;
   }
@@ -99,7 +99,7 @@ main {
     margin: 3rem 0;
   }
 
-  .form-login {
+  .form-cadastro {
     order: 0;
     width: 100%;
   }
@@ -109,18 +109,18 @@ main {
     width: 80%;
   }
 
-  .campo-login {
+  .campo-cadastro {
     width: 80%;
   }
 
-  .botao-login {
+  .botao-cadastro {
     width: 80%;
     padding: 3vw 0;
     margin: 2vw 0;
     font-size: 3vw;
   }
 
-  .botao-cadastro {
+  .botao-login {
     width: 80%;
     font-size: 3vw;
   }

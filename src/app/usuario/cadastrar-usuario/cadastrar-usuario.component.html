@@ -5,19 +5,19 @@
       alt="Serpente em volta de um smartphone"
     />
   </figure>
-  <form class="form-login">
+  <form class="form-cadastro">
     <p class="titulo-campo">CPF:</p>
-    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+    <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input matInput [(ngModel)]="usuario.cpf" name="cpf" />
     </mat-form-field>
 
     <p class="titulo-campo">Nome:</p>
-    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+    <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input matInput [(ngModel)]="usuario.nome" name="nome" />
     </mat-form-field>
 
     <p class="titulo-campo">Nome de usuário:</p>
-    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+    <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input
         matInput
         [(ngModel)]="usuario.nomeUsuario"
@@ -27,7 +27,7 @@
     </mat-form-field>
 
     <p class="titulo-campo">Senha:</p>
-    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+    <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input
         matInput
         type="password"
@@ -36,8 +36,10 @@
       />
     </mat-form-field>
 
-    <button class="botao-login" (click)="cadastrarUsuario()">Cadastrar</button>
-    <button class="botao-cadastro" [routerLink]="['/login-usuario']">
+    <button class="botao-cadastro" (click)="cadastrarUsuario()">
+      Cadastrar
+    </button>
+    <button class="botao-login" [routerLink]="['/login-usuario']">
       Já tem uma conta? Entre agora.
     </button>
   </form>
