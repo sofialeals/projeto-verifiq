@@ -1,23 +1,44 @@
-<form>
-    <mat-form-field>
-        <mat-label>CPF</mat-label>
-        <input matInput [(ngModel)]="usuario.cpf" name="cpf">
+<main>
+  <figure id="img-serpente">
+    <img
+      src="https://i.imgur.com/jlQN3kI.png"
+      alt="Serpente em volta de um smartphone"
+    />
+  </figure>
+  <form class="form-login">
+    <p class="titulo-campo">CPF:</p>
+    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+      <input matInput [(ngModel)]="usuario.cpf" name="cpf" />
     </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Nome</mat-label>
-        <input matInput [(ngModel)]="usuario.nome" name="nome">
+    <p class="titulo-campo">Nome:</p>
+    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+      <input matInput [(ngModel)]="usuario.nome" name="nome" />
     </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Nome de usuário</mat-label>
-        <input matInput [(ngModel)]="usuario.nomeUsuario" (change)="verificarUsername()" name="nomeUsuario">
+    <p class="titulo-campo">Nome de usuário:</p>
+    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+      <input
+        matInput
+        [(ngModel)]="usuario.nomeUsuario"
+        (change)="verificarUsername()"
+        name="nomeUsuario"
+      />
     </mat-form-field>
 
-    <mat-form-field>
-        <mat-label>Senha</mat-label>
-        <input matInput type="password" [(ngModel)]="usuario.senha" name="senhaUsuario">
+    <p class="titulo-campo">Senha:</p>
+    <mat-form-field subscriptSizing="dynamic" class="campo-login">
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="usuario.senha"
+        name="senhaUsuario"
+      />
     </mat-form-field>
 
-    <button mat-fab (click)="cadastrarUsuario()">Cadastrar</button>
-</form>
+    <button class="botao-login" (click)="cadastrarUsuario()">Cadastrar</button>
+    <button class="botao-cadastro" [routerLink]="['/login-usuario']">
+      Já tem uma conta? Entre agora.
+    </button>
+  </form>
+</main>
