@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor(
+    private roteador: Router
+  ) { }
 
-  // Salvar item no localStorage
   logarUsuario(cpf: string) {
     localStorage.setItem("cpfUsuario", cpf);
   }
 
-  // Recuperar item do localStorage
-  checarLogin(chave: string): string | null {
+  deslogarUsuario(chave: string) {
+    localStorage.removeItem(chave);
+    this.roteador.navigate(["/"]);
+  }
+
+  retornarUsuario(chave: string): string | null {
     return localStorage.getItem(chave);
   }
 
-  // Remover item do localStorage
-  deslogarUsuario(chave: string) {
-    localStorage.removeItem(chave);
-  }
-
-  // Limpar todos os itens do localStorage
   limpar() {
     localStorage.clear();
   }

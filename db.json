@@ -1,32 +1,83 @@
 {
   "usuarios": [
     {
-      "id": "2649",
-      "cpf": "123",
-      "nome": "sofia",
-      "nomeUsuario": "sofe",
-      "senha": "123",
-      "pontuacao": 0,
-      "postagens": []
-    },
-    {
-      "id": "d92b",
-      "cpf": "222",
-      "nome": "so",
-      "nomeUsuario": "fia",
-      "senha": "123",
-      "pontuacao": 0,
-      "postagens": []
-    },
-    {
-      "id": "b2d0",
-      "cpf": "897",
-      "nome": "guir",
-      "nomeUsuario": "guir",
-      "senha": "guir",
+      "id": "f2d1",
+      "cpf": "12345678910",
+      "nome": "Gustavo",
+      "nomeUsuario": "admin",
+      "senha": "admin",
       "pontuacao": 0,
       "postagens": []
     }
   ],
-  "postagens": []
+  "postagens": [
+    {
+      "id": "fe5a",
+      "titulo": "Postagem 1",
+      "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt maximus nibh, at fringilla velit interdum eu.",
+      "like": 0,
+      "dislike": 0,
+      "usuario": {
+        "id": "f2d1",
+        "cpf": "12345678910",
+        "nome": "Gustavo",
+        "nomeUsuario": "admin",
+        "senha": "admin",
+        "pontuacao": 0,
+        "postagens": []
+      },
+      "status": "indefinida"
+    },
+    {
+      "id": "092b",
+      "titulo": "Postagem 2",
+      "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt maximus nibh, at fringilla velit interdum eu.",
+      "like": 0,
+      "dislike": 0,
+      "usuario": {
+        "id": "f2d1",
+        "cpf": "12345678910",
+        "nome": "Gustavo",
+        "nomeUsuario": "admin",
+        "senha": "admin",
+        "pontuacao": 0,
+        "postagens": []
+      },
+      "status": "indefinida"
+    },
+    {
+      "id": "4df9",
+      "titulo": "Postagem 3",
+      "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt maximus nibh, at fringilla velit interdum eu.",
+      "like": 0,
+      "dislike": 0,
+      "usuario": {
+        "id": "f2d1",
+        "cpf": "12345678910",
+        "nome": "Gustavo",
+        "nomeUsuario": "admin",
+        "senha": "admin",
+        "pontuacao": 0,
+        "postagens": []
+      },
+      "status": "indefinida"
+    },
+    {
+      "id": "264e",
+      "titulo": "Postagem 4",
+      "texto": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tincidunt maximus nibh, at fringilla velit interdum eu.",
+      "like": 0,
+      "dislike": 0,
+      "usuario": {
+        "id": "f2d1",
+        "cpf": "12345678910",
+        "nome": "Gustavo",
+        "nomeUsuario": "admin",
+        "senha": "admin",
+        "pontuacao": 0,
+        "postagens": []
+      },
+      "status": "indefinida"
+    }
+  ]
 }

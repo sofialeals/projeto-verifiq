@@ -1,10 +1,17 @@
-<!-- <form>
-    <mat-form-field>
-        <mat-label>Id</mat-label>
-        <input matInput [(ngModel)]="usuario.id">
-    </mat-form-field>
-</form> -->
+<main>
+    <form id="criar-postagem">
+        <h1 id="titulo-postagem">Comunique seu problema</h1>
+        <h2 id="subtitulo-postagem">Utilize esse espaço para receber ajuda. Não interaja com o conteúdo antes de ter certeza do seu caráter.</h2>
+        <mat-form-field class="campo-postagem" subscriptSizing="dynamic">
+            <mat-label>Título da postagem</mat-label>
+            <input matInput name="titulo-postagem" [(ngModel)]="titulo"/>
+        </mat-form-field>
+        
+        <mat-form-field class="campo-postagem" subscriptSizing="dynamic">
+            <mat-label>Descreva sua suspeita</mat-label>
+            <textarea matInput name="descricao" [(ngModel)]="texto"></textarea>
+        </mat-form-field>
 
-<!-- <input type="file" id="upload-img" (change)="salvarArq($event)"/> -->
-<input type="file" id="upload-img"/>
-<button id="upload-botao">Carregar imagem</button>
+        <button id="botao-enviar" mat-fab (click)="enviarPostagem()">Enviar</button>
+    </form>
+</main>

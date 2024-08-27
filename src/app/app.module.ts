@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { provideHttpClient } from '@angular/common/http';
     MaterialModule
   ],
 
-providers: [provideHttpClient()],
+providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

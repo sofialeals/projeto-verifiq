@@ -5,217 +5,330 @@ header {
     justify-content: space-between;
     padding: 1.5rem 4rem;
   }
-  
-  #logo {
-    width: 100px;
-    background-color: #ffffff;
-    border-radius: 5rem;
-    padding: 0.5rem 1rem;
-  }
-  
-  #botoes-header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-  }
-  
-  #botoes-header li {
-    margin: 0 1rem;
-  }
-  
-  .botao-header {
-    font-size: 1rem;
-    transition: 0.5s;
-    color: #ffffff;
-    background-color: #ffffff00;
-    box-shadow: none;
-    border-radius: 5rem;
-    height: 3rem;
-    font-weight: bold;
-  }
-  
-  .botao-header:hover {
-    transition: 0.5s;
-    background-color: #ffffff00;
-    background-color: #40c288;
-  }
-  
-  main {
-    background-color: #007048;
-  }
-  
-  #botao-adicionar {
-    transition: 0.5s;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 99;
-    outline: none;
-    background-color: #33a673;
-    color: #ffffff;
-    border: 2px solid #ffffff00;
-    border-radius: 5rem;
-  }
-  
-  #botao-adicionar:hover {
-    transition: 0.5s;
-    background-color: #40c288;
-    border: 2px solid #ffffff;
-  }
-  
-  #tela-inicio {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    color: #ffffff;
-    padding: 3rem 0;
-  }
-  
-  .item-inicio {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-  }
-  
-  #ajuda-inicio {
-    display: flex;
+
+#logo {
+  width: 100px;
+  background-color: #ffffff;
+  border-radius: 5rem;
+  padding: 0.5rem 1rem;
+}
+
+#botoes-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#botoes-header li {
+  margin: 0 1rem;
+}
+
+.botao-header {
+  font-size: 1rem;
+  transition: 0.5s;
+  color: #ffffff;
+  background-color: #ffffff00;
+  box-shadow: none;
+  border-radius: 5rem;
+  height: 3rem;
+}
+
+.botao-header:hover {
+  transition: 0.5s;
+  background-color: #ffffff00;
+  background-color: #40c288;
+}
+
+main {
+  background-color: #007048;
+}
+
+#botao-adicionar {
+  transition: 0.5s;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  outline: none;
+  background-color: #33a673;
+  color: #ffffff;
+  border: 2px solid #ffffff00;
+  border-radius: 5rem;
+}
+
+#botao-adicionar:hover {
+  transition: 0.5s;
+  background-color: #40c288;
+  border: 2px solid #ffffff;
+}
+
+#tela-inicio {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #ffffff;
+  padding: 3rem 0;
+}
+
+.item-inicio {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#ajuda-inicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+#ajuda-inicio li {
+  width: 80%;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+#ajuda-inicio h1 {
+  font-size: 2.5rem;
+}
+
+#ajuda-inicio h2 {
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+
+#ajuda-inicio button {
+  transition: 0.5s;
+  background-color: #33a673;
+  color: #ffffff;
+  padding: 1.5rem 3rem;
+  border-radius: 5rem;
+  font-size: 1.1rem;
+}
+
+#ajuda-inicio button:hover {
+  transition: 0.5s;
+  background-color: #40c288;
+}
+
+#sobre {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 5rem 0;
+}
+
+#sobre-conteudo {
+  width: 60%;
+  background-color: #33a673;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 2rem;
+  padding: 2rem;
+}
+
+#sobre-conteudo li {
+  width: 50%;
+  margin: 1rem;
+}
+
+#sobre-conteudo h1 {
+  font-size: 3rem;
+  margin: 0.5rem 0;
+}
+
+#sobre-conteudo h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 0.5rem 0;
+}
+
+#sobre-conteudo p {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  line-height: 1.5rem;
+}
+
+#sobre-conteudo img {
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  background-color: #004d32;
+  color: #ffffff;
+  padding: 1rem 0;
+}
+
+footer h1 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+#redes-sociais {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#redes-sociais li {
+  margin: 0.5rem;
+}
+
+#redes-sociais a {
+  transition: 0.5s;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+#redes-sociais a:hover {
+  transition: 0.5s;
+  color: #40c288;
+}
+
+#alunos {
+  padding: 0.5rem 0;
+}
+
+#alunos a {
+  transition: 0.5s;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#alunos a:hover {
+  transition: 0.5s;
+  color: #40c288;
+}
+
+#angular-logo {
+  transition: 0.5s;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+#angular-logo:hover {
+  transition: 0.5s;
+  color: #40c288;
+}
+
+@media only screen and (max-width: 1024px) {
+  header {
     flex-direction: column;
+    padding: 1.5rem 1rem;
+    justify-content: center;
     align-items: center;
     align-content: center;
   }
-  
-  #ajuda-inicio li {
+
+  #logo {
+    margin-bottom: 1rem;
+  }
+
+  #img-inicio {
     width: 80%;
-    margin: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: flex-start;
   }
-  
+
   #ajuda-inicio h1 {
-    font-size: 2.5rem;
+    font-size: 3vw;
   }
-  
+
   #ajuda-inicio h2 {
-    font-size: 1.3rem;
+    font-size: 2vw;
   }
-  
+
   #ajuda-inicio button {
-    transition: 0.5s;
-    background-color: #33a673;
-    color: #ffffff;
-    padding: 1.5rem 3rem;
-    border-radius: 5rem;
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-size: 1.5vw;
+    width: 70%;
+    padding: 0;
   }
-  
-  #ajuda-inicio button:hover {
-    transition: 0.5s;
-    background-color: #40c288;
+}
+
+@media only screen and (max-width: 768px) {
+  #botoes-header {
+    flex-direction: column;
+    width: 100%;
   }
-  
-  @media only screen and (max-width: 1024px) {
-    header {
-      flex-direction: column;
-      padding: 1.5rem 1rem;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-    }
-  
-    #logo {
-      margin-bottom: 1rem;
-    }
-  
-    #img-inicio {
-      width: 80%;
-    }
-  
-    #ajuda-inicio h1 {
-      font-size: 3vw;
-    }
-  
-    #ajuda-inicio h2 {
-      font-size: 2vw;
-    }
-  
-    #ajuda-inicio button {
-      font-size: 1.5vw;
-      width: 70%;
-      padding: 0;
-    }
+
+  #botoes-header li {
+    width: 100%;
+    margin: 0;
   }
-  
-  @media only screen and (max-width: 768px) {
-    #botoes-header {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    #botoes-header li {
-      width: 100%;
-      margin: 0;
-    }
-  
-    .botao-header {
-      background-color: #fafafa;
-      width: 100%;
-      margin: 0.2rem 0;
-      border-radius: 0.5rem;
-      color: #000000;
-    }
-  
-    .botao-header:hover {
-      background-color: #fafafa;
-    }
-  
-    #tela-inicio {
-      flex-direction: column;
-      padding: 0;
-    }
-  
-    .item-inicio {
-      width: 100%;
-    }
-  
-    #img-inicio {
-      width: 70%;
-    }
-  
-    .item-inicio {
-      margin: 1rem 0;
-    }
-  
-    #ajuda-inicio li {
-      justify-content: center;
-      text-align: center;
-    }
-  
-    #ajuda-inicio h1 {
-      font-size: 8vw;
-    }
-  
-    #ajuda-inicio h2 {
-      font-size: 4vw;
-    }
-  
-    #ajuda-inicio button {
-      font-size: 3vw;
-      width: 50%;
-      padding: 3vw 0;
-    }
+
+  .botao-header {
+    background-color: #fafafa;
+    width: 100%;
+    margin: 0.2rem 0;
+    border-radius: 0.5rem;
+    color: #000000;
   }
-  
-  @media only screen and (max-width: 480px) {
+
+  .botao-header:hover {
+    background-color: #fafafa;
   }
+
+  #tela-inicio {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .item-inicio {
+    width: 100%;
+  }
+
+  #img-inicio {
+    width: 70%;
+  }
+
+  .item-inicio {
+    margin: 1rem 0;
+  }
+
+  #ajuda-inicio li {
+    justify-content: center;
+    text-align: center;
+  }
+
+  #ajuda-inicio h1 {
+    font-size: 8vw;
+  }
+
+  #ajuda-inicio h2 {
+    font-size: 4vw;
+  }
+
+  #ajuda-inicio button {
+    font-size: 3vw;
+    width: 50%;
+    padding: 3vw 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}

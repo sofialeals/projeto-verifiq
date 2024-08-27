@@ -1,0 +1,30 @@
+<main>
+    @for (postagem of postagens; track $index) {
+        <mat-card class="postagem">
+            <figure>
+                <img src="https://pweb1.my.canva.site/media/37174b13a96ce9bc8d29355e1482576f.png" alt="Imagem padrão">
+            </figure>
+            <h1>
+                <mat-card-header>{{ postagem.titulo }}</mat-card-header>
+            </h1>
+            <p>
+                <mat-card-content>{{ postagem.texto }}</mat-card-content>
+            </p>
+            
+            
+            
+            <mat-card-actions>
+                <button mat-fab extended class="botao-voto like">
+                    <mat-icon>thumb_up</mat-icon>
+                    <mat-card-content>{{ postagem.like }}</mat-card-content>
+                </button>
+                
+                
+                <button mat-fab extended class="botao-voto dislike">
+                    <mat-icon>thumb_down</mat-icon>
+                    <mat-card-content>{{ postagem.dislike }}</mat-card-content>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    }
+</main>

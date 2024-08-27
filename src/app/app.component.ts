@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { LocalStorageService } from './shared/service/localstorage.service';
+import { SnackBarService } from './shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +12,11 @@ import { LocalStorageService } from './shared/service/localstorage.service';
 })
 export class AppComponent implements OnInit{
   mostrarHome : boolean = true;
-  usuarioLogado : boolean = true;
-  teste: boolean = true;
 
   constructor(
     private roteador : Router,
-    private localStorage : LocalStorageService
+    private localStorage : LocalStorageService,
+    private snackbar : SnackBarService
   ){}
 
   ngOnInit(): void {
@@ -24,25 +24,50 @@ export class AppComponent implements OnInit{
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       const urlAtual = this.roteador.url;
-      const usuarioAtual = this.localStorage.checarLogin("cpfUsuario");
-      console.log(usuarioAtual)
       
       if (urlAtual === '/') {
         this.mostrarHome = true;
       } else {
         this.mostrarHome = false;
       }
-
-      if (usuarioAtual != null) {
-        this.usuarioLogado = true;
-      } else {
-        this.usuarioLogado = false;
-      }
     });
   }
 
   limparLocalStorage(){
     this.localStorage.limpar();
+  }
+
+  deslogar(){
+    this.localStorage.deslogarUsuario("cpfUsuario");
+  }
+
+  usuarioLogado() : boolean {
+    let usuarioLogado: boolean = false;
+    const usuarioAtual = this.localStorage.retornarUsuario("cpfUsuario");
+    
+    if (usuarioAtual != null) {
+      usuarioLogado = true;
+    } else {
+      usuarioLogado = false;
+    }
+
+    return usuarioLogado;
+  }
+
+  redirecionar(botaoApertado : string){
+    if(this.usuarioLogado()){
+      if(botaoApertado === '0'){
+        this.roteador.navigate(["/criar-postagem"]);
+      } else if (botaoApertado === '1'){
+        this.roteador.navigate(["/exibir-postagens"]);
+      }
+      
+    } else {
+      this.snackbar.exibirMensagem("Você precisa fazer login antes.")
+      this.roteador.navigate(["/login-usuario"], {
+        queryParams: { returnUrl: botaoApertado }
+      });
+    }
   }
 
   title = 'projeto-verifiq';

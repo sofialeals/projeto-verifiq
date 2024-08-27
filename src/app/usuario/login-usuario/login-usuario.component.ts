@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../../shared/service/usuario.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { LocalStorageService } from '../../shared/service/localstorage.service';
-import { Usuario } from '../../shared/model/usuario';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SnackBarService } from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-login-usuario',
@@ -14,7 +16,10 @@ export class LoginUsuarioComponent {
 
   constructor(
     private service: UsuarioService,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private roteador : Router,
+    private rota : ActivatedRoute,
+    private snackbar : SnackBarService
   ) {}
   
   entrarUsuario() {
@@ -24,22 +29,28 @@ export class LoginUsuarioComponent {
           console.log(typeof(usuarioRetornado))
           if(usuarioRetornado instanceof Object) {
             if(usuarioRetornado.senha === this.senhaUsuario){
+              const botaoApertado = this.rota.snapshot.queryParamMap.get('returnUrl');
               this.localStorage.logarUsuario(this.cpfUsuario)
-              console.log("logou")
-              console.log(this.localStorage.checarLogin("cpfUsuario"))
+              if(botaoApertado === '0'){
+                this.roteador.navigate(["/criar-postagem"]);
+              } else if (botaoApertado === '1'){
+                this.roteador.navigate(["/exibir-postagens"]);
+              } else {
+                this.roteador.navigate(["/"]);
+              }
               this.limparInputs();
             } else {
-              console.log("nao logou")
+              this.snackbar.exibirMensagem("Senha incorreta.");
               this.limparInputs();
             }
           }
           else {
-            console.log("EPA! Não logou")
+            this.snackbar.exibirMensagem(`Usuário de CPF ${this.cpfUsuario} não existe.`)
+            this.limparInputs();
           }
         }
       }
     );
-    
   }
 
   limparInputs(){

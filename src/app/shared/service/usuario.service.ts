@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UsuarioRest } from './rest.service';
+import { UsuarioRestService } from './usuario-rest.service';
 import { Usuario } from '../model/usuario';
 import { switchMap } from 'rxjs';
 import { of } from 'rxjs';
@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 })
 export class UsuarioService {
 
-  constructor(private rest: UsuarioRest) {}
+  constructor(private rest: UsuarioRestService) {}
 
   inserir(usuario: Usuario){
     return this.rest.buscarCpf(usuario.cpf).pipe(

@@ -6,62 +6,122 @@
     />
     <ul id="botoes-header">
       <li>
-        <button class="botao-header" mat-fab extended>
-          <mat-icon>info</mat-icon>
-          Sobre
+        <button class="botao-header" mat-fab extended [routerLink]="['/']">
+          <mat-icon>home</mat-icon>
+          Início
         </button>
       </li>
       <li>
-        <button class="botao-header" mat-fab extended [routerLink]="['criar-postagem']">
+        <button class="botao-header" mat-fab extended (click)="redirecionar('0')">
           <mat-icon>handshake</mat-icon>
           Receba ajuda
         </button>
       </li>
       <li>
-        <button class="botao-header" mat-fab extended>
+        <button class="botao-header" mat-fab extended (click)="redirecionar('1')">
           <mat-icon>swap_vert</mat-icon>
           Vote
         </button>
       </li>
       <li>
-        <button *ngIf="!usuarioLogado" class="botao-header" mat-fab extended [routerLink]="['login-usuario']" (click)="limparLocalStorage()">
+        <button *ngIf="!usuarioLogado()" class="botao-header" mat-fab extended [routerLink]="['/login-usuario']">
           <mat-icon>account_circle</mat-icon>
           Entrar
         </button>
 
-        <button *ngIf="usuarioLogado" class="botao-header" mat-fab extended [routerLink]="['login-usuario']">
+        <button *ngIf="usuarioLogado()" class="botao-header" mat-fab extended [matMenuTriggerFor]="menu">
           <mat-icon>account_circle</mat-icon>
-          Perfil
+          Meu perfil
         </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Minhas postagens</button>
+          <button mat-menu-item (click)="deslogar()">Sair</button>
+        </mat-menu>
       </li>
     </ul>
-  </header>
+</header>
 
-  <main *ngIf="mostrarHome">
-    <ul id="tela-inicio">
-      <li class="item-inicio">
-        <ul id="ajuda-inicio">
-          <li><h1>Um título impactante</h1></li>
-          <li>
-            <h2>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-              tincidunt maximus nibh, at fringilla velit interdum eu.
-            </h2>
-          </li>
-          <li><button mat-button>Receba ajuda</button></li>
-        </ul>
+<main *ngIf="mostrarHome">
+  <ul id="tela-inicio">
+    <li class="item-inicio">
+      <ul id="ajuda-inicio">
+        <li><h1>Um título impactante</h1></li>
+        <li>
+          <h2>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+            tincidunt maximus nibh, at fringilla velit interdum eu.
+          </h2>
+        </li>
+        <li><button mat-button (click)="redirecionar('0')">Receba ajuda</button></li>
+      </ul>
+    </li>
+    <li class="item-inicio">
+      <img
+        id="img-inicio"
+        src="https://i.imgur.com/jlQN3kI.png"
+        alt="Serpente em volta de um smartphone"
+      />
+    </li>
+  </ul>
+  <button mat-fab id="botao-adicionar" (click)="redirecionar('0')">
+    <mat-icon>add</mat-icon>
+  </button>
+  <article id="sobre">
+    <ul id="sobre-conteudo">
+      <li>
+        <img src="https://pweb1.my.canva.site/media/c6d28c6bc2a5443868f9543f7e96455c.png" alt="Computador com sinal de perigo">
       </li>
-      <li class="item-inicio">
-        <img
-          id="img-inicio"
-          src="https://i.imgur.com/jlQN3kI.png"
-          alt="Serpente em volta de um smartphone"
-        />
+      <li>
+        <h1>Sobre</h1>
+        <h2>Coloque seu subcabeçalho aqui</h2>
+        <p>Este espaço é muito importante! Use-o para elaborar um título de seção cativante. Explique o conteúdo da seção, compartilhe alguns detalhes e dê a quantidade certa de informações para fisgar seu público. ste espaço é muito importante! Use-o para elaborar um título de seção cativante. Explique o conteúdo da seção, compartilhe alguns detalhes e dê a quantidade certa de informações para fisgar seu público.</p>
       </li>
     </ul>
-    <button mat-fab id="botao-adicionar" [routerLink]="['criar-postagem']">
-      <mat-icon>add</mat-icon>
-    </button>
-  </main>
+  </article>
+
+</main>
 
 <router-outlet *ngIf="!mostrarHome"></router-outlet>
+
+<footer>
+  <h1>Siga nossas redes sociais:</h1>
+  <ul id="redes-sociais">
+    <li>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://x.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-square-facebook"></i>
+      </a>
+    </li>
+  </ul>
+
+  <hr style="margin: 1rem 0; border: 2px solid #007048;">
+
+  <ul id="alunos">
+    <li><p>Desenvolvido por:</p></li>
+    <li>
+      <a href="https://github.com/joseguilherme-fs" target="_blank" rel="noopener noreferrer">José Guilherme</a>
+    </li>
+    <li>
+      <a href="https://github.com/lucas-elds" target="_blank" rel="noopener noreferrer">Lucas Emiliano</a>
+    </li>
+    <li>
+      <a href="https://github.com/sofialeals" target="_blank" rel="noopener noreferrer">Sofia Leal</a>
+    </li>
+  </ul>
+
+  <p>Para a disciplina de Programação para Web 1</p>
+  <p>Utilizando:</p>
+  <a id="angular-logo" href="https://material.angular.io/" target="_blank" rel="noopener noreferrer">
+    <i class="fa-brands fa-angular"></i>
+  </a>
+    
+</footer>

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../model/usuario';
-import { Postagem } from '../model/postagem';
 import { Observable } from 'rxjs';
+import { Usuario } from '../model/usuario';
+import { HttpClient } from '@angular/common/http';
+import { Postagem } from '../model/postagem';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UsuarioRest{
+export class UsuarioRestService{
   rotaUsuarios = 'http://localhost:3000/usuarios';
     
   constructor(
@@ -26,19 +26,12 @@ export class UsuarioRest{
   buscarUsername(username: string): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.rotaUsuarios}?nomeUsuario=${username}`);
   }
-}
 
-export class PostagemRest{
+  // atualizar(cpf: string, dadosAtualizados: Partial<Usuario>): Observable<Usuario> {
+  //   return this.http.patch<Usuario>(`${this.rotaUsuarios}?cpf=${cpf}`, dadosAtualizados);
+  // }
 
-  rotaPostagens = 'http://localhost:3000/postagens';
-    
-  constructor(private http: HttpClient) {}
-
-  inserir(postagem: Postagem): Observable<Postagem> {
-    return this.http.post<Postagem>(this.rotaPostagens, postagem);
-  }
-
-  buscar(username: string): Observable<Postagem[]> {
-    return this.http.get<Postagem[]>(`${this.rotaPostagens}/${username}`);
-  }
+  // atualizar(cpf: string, usuario: Usuario): Observable<Usuario> {
+  //   return this.http.put<Usuario>(`${this.rotaUsuarios}?cpf=${cpf}`, usuario);
+  // }
 }
