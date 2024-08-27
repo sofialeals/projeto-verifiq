@@ -46,15 +46,11 @@ export class UsuarioService {
   }
 
   buscarUsuario(cpf: string) {
-    console.log("Entrei no buscar")
     return this.rest.buscarCpf(cpf).pipe(
       switchMap(usuarioBuscado => {
-        console.log(usuarioBuscado)
         if(usuarioBuscado.length === 0){
-          console.log("Entrei no IF")
           return of(false);
         } else {
-          console.log("Entrei no ELSE")
           return usuarioBuscado;
         }
       })
