@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
 import { LocalStorageService } from './shared/service/localstorage.service';
 import { SnackBarService } from './shared/service/snack-bar.service';
 
@@ -10,8 +8,7 @@ import { SnackBarService } from './shared/service/snack-bar.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit{
-  mostrarHome : boolean = true;
+export class AppComponent{
 
   constructor(
     private roteador : Router,
@@ -19,39 +16,18 @@ export class AppComponent implements OnInit{
     private snackbar : SnackBarService
   ){}
 
-  ngOnInit(): void {
-    this.roteador.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
-      const urlAtual = this.roteador.url;
+  mostrarHome(): boolean {
+    let mostrarHome: boolean = true;
+
+    const urlAtual = this.roteador.url;
       
-      if (urlAtual === '/') {
-        this.mostrarHome = true;
-      } else {
-        this.mostrarHome = false;
-      }
-    });
-  }
-
-  limparLocalStorage(){
-    this.localStorage.limpar();
-  }
-
-  deslogar(){
-    this.localStorage.deslogarUsuario("cpfUsuario");
-  }
-
-  usuarioLogado() : boolean {
-    let usuarioLogado: boolean = false;
-    const usuarioAtual = this.localStorage.retornarUsuario("cpfUsuario");
-    
-    if (usuarioAtual != null) {
-      usuarioLogado = true;
+    if (urlAtual === '/') {
+      mostrarHome = true;
     } else {
-      usuarioLogado = false;
+      mostrarHome = false;
     }
 
-    return usuarioLogado;
+    return mostrarHome;
   }
 
   redirecionar(botaoApertado : string){
@@ -68,6 +44,14 @@ export class AppComponent implements OnInit{
         queryParams: { returnUrl: botaoApertado }
       });
     }
+  }
+
+  deslogar(){
+    this.localStorage.deslogarUsuario("cpfUsuario");
+  }
+
+  usuarioLogado() : boolean {
+    return this.localStorage.usuarioLogado();
   }
 
   title = 'projeto-verifiq';

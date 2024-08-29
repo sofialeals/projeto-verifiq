@@ -19,7 +19,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     UsuarioModule,
     PostagemModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+
   ],
   exports: [
     MaterialModule

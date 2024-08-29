@@ -15,42 +15,12 @@ export class LoginUsuarioComponent {
   senhaUsuario: string = "";
 
   constructor(
-    private service: UsuarioService,
-    private localStorage: LocalStorageService,
-    private roteador : Router,
-    private rota : ActivatedRoute,
-    private snackbar : SnackBarService
+    private usuarioService: UsuarioService
   ) {}
   
   entrarUsuario() {
-    this.service.buscarUsuario(this.cpfUsuario).subscribe(
-      {
-        next: usuarioRetornado => {
-          console.log(typeof(usuarioRetornado))
-          if(usuarioRetornado instanceof Object) {
-            if(usuarioRetornado.senha === this.senhaUsuario){
-              const botaoApertado = this.rota.snapshot.queryParamMap.get('returnUrl');
-              this.localStorage.logarUsuario(this.cpfUsuario)
-              if(botaoApertado === '0'){
-                this.roteador.navigate(["/criar-postagem"]);
-              } else if (botaoApertado === '1'){
-                this.roteador.navigate(["/exibir-postagens"]);
-              } else {
-                this.roteador.navigate(["/"]);
-              }
-              this.limparInputs();
-            } else {
-              this.snackbar.exibirMensagem("Senha incorreta.");
-              this.limparInputs();
-            }
-          }
-          else {
-            this.snackbar.exibirMensagem(`Usuário de CPF ${this.cpfUsuario} não existe.`)
-            this.limparInputs();
-          }
-        }
-      }
-    );
+    this.usuarioService.logarUsuario(this.cpfUsuario, this.senhaUsuario);
+    this.limparInputs();
   }
 
   limparInputs(){

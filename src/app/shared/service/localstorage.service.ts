@@ -23,6 +23,16 @@ export class LocalStorageService {
     return localStorage.getItem(chave);
   }
 
+  usuarioLogado(): boolean {
+    let usuarioLogado: boolean = true;
+
+    if(this.retornarUsuario("cpfUsuario") === null){
+      usuarioLogado = false
+    }
+
+    return usuarioLogado;
+  }
+
   limpar() {
     localStorage.clear();
   }

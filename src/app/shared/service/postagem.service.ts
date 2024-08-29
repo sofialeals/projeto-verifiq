@@ -1,12 +1,9 @@
-// import { createClient, SupabaseClient } from '@supabase/supabase-js'
-// import { SUPABASE_KEY, SUPABASE_URL } from '../../../../arquivo';
 import { Injectable } from '@angular/core';
 import { PostagemRestService } from './postagem-rest.service';
 import { Postagem } from '../model/postagem';
 import { UsuarioService } from './usuario.service';
-import { UsuarioRestService } from './usuario-rest.service';
 import { SnackBarService } from './snack-bar.service';
-import { Usuario } from '../model/usuario';
+import { LocalStorageService } from './localstorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,30 +12,32 @@ export class PostagemService {
   
   constructor(
     private servicoUsuario : UsuarioService,
-    private rest : PostagemRestService,
-    private usuarioRest : UsuarioRestService, 
-    private snackbar : SnackBarService
+    private postagemRest : PostagemRestService,
+    private snackbar : SnackBarService,
+    private localStorage : LocalStorageService
   ){}
 
-  // private supabase : SupabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+  criarPostagem(titulo: string, texto : string){
+    const cpfUsuario = this.localStorage.retornarUsuario("cpfUsuario");
 
-  criarPostagem(cpfUsuario: string, titulo: string, texto : string){
-    this.servicoUsuario.buscarUsuario(cpfUsuario).subscribe(
-      {
-        next: usuarioBuscado => {
-          if(usuarioBuscado instanceof Object){
-            const postagem : Postagem = new Postagem(titulo, texto, usuarioBuscado);
-            this.rest.inserir(postagem).subscribe(
-              {
-                next: postagemInserida => this.snackbar.exibirMensagem('Postagem inserida. Acompanhe o progresso por meio da aba "Minhas postagens".')
-              }
-            );  
-          } else {
-            this.snackbar.exibirMensagem("Usuário não encontrado.")
+    if(cpfUsuario != null){
+      this.servicoUsuario.buscarUsuario(cpfUsuario).subscribe(
+        {
+          next: usuarioBuscado => {
+            if(usuarioBuscado.length > 0){
+              const postagem : Postagem = new Postagem(titulo, texto, usuarioBuscado[0]);
+              this.postagemRest.inserir(postagem).subscribe(
+                {
+                  next: postagemInserida => this.servicoUsuario.adicionarPostUsuario(usuarioBuscado[0].cpf, postagemInserida)
+                }
+              );  
+            } else {
+              this.snackbar.exibirMensagem("Usuário não encontrado.")
+            }
           }
         }
-      }
-    )
+      )
+    }
   }
 }
 

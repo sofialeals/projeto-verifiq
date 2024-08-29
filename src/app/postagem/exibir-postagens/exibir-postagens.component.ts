@@ -11,13 +11,12 @@ export class ExibirPostagensComponent {
   postagens: Postagem[] = [];
 
   constructor(
-    private restService: PostagemRestService
+    private postagemRest: PostagemRestService
   ) {
-    this.restService.listar().subscribe(
+    this.postagemRest.listar().subscribe(
       {
         next: resposta => {
           this.postagens = resposta
-          console.log(resposta)
         }
       }
     );

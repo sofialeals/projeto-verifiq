@@ -27,11 +27,7 @@ export class UsuarioRestService{
     return this.http.get<Usuario[]>(`${this.rotaUsuarios}?nomeUsuario=${username}`);
   }
 
-  // atualizar(cpf: string, dadosAtualizados: Partial<Usuario>): Observable<Usuario> {
-  //   return this.http.patch<Usuario>(`${this.rotaUsuarios}?cpf=${cpf}`, dadosAtualizados);
-  // }
-
-  // atualizar(cpf: string, usuario: Usuario): Observable<Usuario> {
-  //   return this.http.put<Usuario>(`${this.rotaUsuarios}?cpf=${cpf}`, usuario);
-  // }
+  atualizarPostsUsuario(idUsuario: string | undefined, atualizacaoPostagens: Postagem[]): Observable<any> {
+    return this.http.patch(`${this.rotaUsuarios}/${idUsuario}`, {postagens: atualizacaoPostagens});
+  }
 }

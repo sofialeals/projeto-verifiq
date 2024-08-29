@@ -41,15 +41,14 @@
     </ul>
 </header>
 
-<main *ngIf="mostrarHome">
+<main *ngIf="mostrarHome()">
   <ul id="tela-inicio">
     <li class="item-inicio">
       <ul id="ajuda-inicio">
-        <li><h1>Um título impactante</h1></li>
+        <li><h1>Navegação com mais confiança</h1></li>
         <li>
           <h2>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-            tincidunt maximus nibh, at fringilla velit interdum eu.
+            Questione e descubra a verdade por trás do que você vê na Web. VerifiQ está aqui para ajudar a identificar golpes e fake news com facilidade e segurança.
           </h2>
         </li>
         <li><button mat-button (click)="redirecionar('0')">Receba ajuda</button></li>
@@ -73,15 +72,22 @@
       </li>
       <li>
         <h1>Sobre</h1>
-        <h2>Coloque seu subcabeçalho aqui</h2>
-        <p>Este espaço é muito importante! Use-o para elaborar um título de seção cativante. Explique o conteúdo da seção, compartilhe alguns detalhes e dê a quantidade certa de informações para fisgar seu público. ste espaço é muito importante! Use-o para elaborar um título de seção cativante. Explique o conteúdo da seção, compartilhe alguns detalhes e dê a quantidade certa de informações para fisgar seu público.</p>
+        <p>
+          Em um mundo onde golpes e fake news estão cada vez mais sofisticados, o objetivo da VerifiQ é ser uma ferramenta simples e eficaz para verificar a veracidade de conteúdos que levantam suspeitas.
+        </p>
+        <p>
+          Ao se cadastrar, você pode fazer uma postagem descrevendo a sua suspeita e receber auxílio da comunidade para identificar o caráter desse conteúdo.
+        </p>
+        <p>
+          Além disso, você também pode avaliar as postagens de outras pessoas e contribuir para a identificação de informações e situações perigosas.
+        </p>
       </li>
     </ul>
   </article>
 
 </main>
 
-<router-outlet *ngIf="!mostrarHome"></router-outlet>
+<router-outlet *ngIf="!mostrarHome()"></router-outlet>
 
 <footer>
   <h1>Siga nossas redes sociais:</h1>
