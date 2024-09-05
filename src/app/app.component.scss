@@ -328,6 +328,19 @@ footer h1 {
     width: 50%;
     padding: 3vw 0;
   }
+
+  #sobre-conteudo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sobre-conteudo li {
+    width: 90%;
+  }
+
+  #sobre-conteudo img {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 480px) {

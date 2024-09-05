@@ -99,16 +99,18 @@ export class UsuarioService {
     )
   }
 
-  adicionarPostUsuario(cpfUsuario: string, novaPostagem: Postagem){
+  adicionarPostUsuario(cpfUsuario: string, idNovaPost: string){
     this.rest.buscarCpf(cpfUsuario).subscribe(
       {
         next: usuarioBuscado => {
-          const postsAtualizados: Postagem[] = [...usuarioBuscado[0].postagens, novaPostagem];
-          this.rest.atualizarPostsUsuario(usuarioBuscado[0].id, postsAtualizados).subscribe(
-            {
-              next: resposta => this.snackbar.exibirMensagem('Postagem inserida. Acompanhe o progresso por meio da aba "Minhas postagens".')
-            }
-          )
+          const postsAtualizados = [...usuarioBuscado[0].postagens, idNovaPost];
+          if(usuarioBuscado[0].id != undefined){
+            this.rest.atualizarPostsUsuario(usuarioBuscado[0].id, postsAtualizados).subscribe(
+              {
+                next: resposta => this.snackbar.exibirMensagem('Postagem inserida. Acompanhe o progresso por meio da aba "Minhas postagens".')
+              }
+            )
+          }
         }
       }
     )

@@ -7,7 +7,7 @@ export class Usuario {
     nomeUsuario : string;
     senha: string;
     pontuacao : Number = 0;
-    postagens: Postagem[] = [];
+    postagens: string[] = [];
 
     constructor(cpf: string, nome: string, nomeUsuario : string, senha: string) {
         this.cpf = cpf;

@@ -27,7 +27,7 @@ export class UsuarioRestService{
     return this.http.get<Usuario[]>(`${this.rotaUsuarios}?nomeUsuario=${username}`);
   }
 
-  atualizarPostsUsuario(idUsuario: string | undefined, atualizacaoPostagens: Postagem[]): Observable<any> {
-    return this.http.patch(`${this.rotaUsuarios}/${idUsuario}`, {postagens: atualizacaoPostagens});
+  atualizarPostsUsuario(idUsuarios: string, atualizacaoPostagens: string[]): Observable<any> {
+    return this.http.patch(`${this.rotaUsuarios}/${idUsuarios}`, {postagens: atualizacaoPostagens});
   }
 }

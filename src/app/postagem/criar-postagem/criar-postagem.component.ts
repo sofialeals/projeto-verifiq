@@ -13,8 +13,7 @@ export class CriarPostagemComponent {
   titulo : string = "";
 
   constructor(
-    private servicoPostagem : PostagemService,
-    private localStorage: LocalStorageService
+    private servicoPostagem : PostagemService
   ){}
 
   enviarPostagem(){

@@ -24,11 +24,16 @@ export class PostagemService {
       this.servicoUsuario.buscarUsuario(cpfUsuario).subscribe(
         {
           next: usuarioBuscado => {
-            if(usuarioBuscado.length > 0){
-              const postagem : Postagem = new Postagem(titulo, texto, usuarioBuscado[0]);
+            if(usuarioBuscado.length > 0 && usuarioBuscado[0].id != undefined){
+              const idUsuario = usuarioBuscado[0].id;
+              const postagem : Postagem = new Postagem(titulo, texto, idUsuario);
               this.postagemRest.inserir(postagem).subscribe(
                 {
-                  next: postagemInserida => this.servicoUsuario.adicionarPostUsuario(usuarioBuscado[0].cpf, postagemInserida)
+                  next: postagemInserida => {
+                    if(postagemInserida.id != undefined){
+                      this.servicoUsuario.adicionarPostUsuario(usuarioBuscado[0].cpf, postagemInserida.id)
+                    }
+                  }
                 }
               );  
             } else {
