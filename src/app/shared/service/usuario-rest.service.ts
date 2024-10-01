@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../model/usuario';
 import { HttpClient } from '@angular/common/http';
-import { Postagem } from '../model/postagem';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UsuarioRestService{
-  rotaUsuarios = 'http://localhost:3000/usuarios';
+  rotaUsuarios = 'http://localhost:8080/usuarios';
     
   constructor(
     private http: HttpClient
@@ -19,15 +18,27 @@ export class UsuarioRestService{
     return this.http.post<Usuario>(this.rotaUsuarios, usuario);
   }
 
-  buscarCpf(cpf: string): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.rotaUsuarios}?cpf=${cpf}`);
+  buscarPorId(id: Number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.rotaUsuarios}/${id}`)
   }
 
-  buscarUsername(username: string): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(`${this.rotaUsuarios}?nomeUsuario=${username}`);
+  buscarPorCpf(cpf: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.rotaUsuarios}/cpf?cpf=${cpf}`);
   }
 
-  atualizarPostsUsuario(idUsuarios: string, atualizacaoPostagens: string[]): Observable<any> {
-    return this.http.patch(`${this.rotaUsuarios}/${idUsuarios}`, {postagens: atualizacaoPostagens});
+  buscarPostagens(id: Number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.rotaUsuarios}/${id}/postagens`);
+  }
+
+  buscarNomeUsuario(username: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.rotaUsuarios}/nomeUsuario?nomeUsuario=${username}`);
+  }
+
+  atualizarPostsUsuario(idUsuario: number, novasPostagens: string[]): Observable<any> {
+    return this.http.patch(`${this.rotaUsuarios}/${idUsuario}/postagens`, novasPostagens);
+  }
+
+  verificarSenha(credenciais: string[]): Observable<any> {
+    return this.http.post(`${this.rotaUsuarios}/autenticacao`, credenciais);
   }
 }

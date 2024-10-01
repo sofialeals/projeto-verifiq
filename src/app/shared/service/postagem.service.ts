@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PostagemRestService } from './postagem-rest.service';
+import { FirestoreService } from './firestore.service';
 import { Postagem } from '../model/postagem';
 import { UsuarioService } from './usuario.service';
 import { SnackBarService } from './snack-bar.service';
@@ -12,37 +12,61 @@ export class PostagemService {
   
   constructor(
     private servicoUsuario : UsuarioService,
-    private postagemRest : PostagemRestService,
+    private fireStore : FirestoreService,
     private snackbar : SnackBarService,
     private localStorage : LocalStorageService
   ){}
 
-  criarPostagem(titulo: string, texto : string){
-    const cpfUsuario = this.localStorage.retornarUsuario("cpfUsuario");
+  atualizar(postagem: Postagem){
+    postagem.status = "encerrada";
+    return this.fireStore.atualizar(postagem).subscribe({
+      next: resposta => {
+        this.snackbar.exibirMensagem("Você encerrou essa postagem.")
+      },
+      error: erro => {
+        this.snackbar.exibirMensagem("Ocorreu um erro ao encerrar postagem.")
+      }
+    })
+  }
 
-    if(cpfUsuario != null){
-      this.servicoUsuario.buscarUsuario(cpfUsuario).subscribe(
-        {
-          next: usuarioBuscado => {
-            if(usuarioBuscado.length > 0 && usuarioBuscado[0].id != undefined){
-              const idUsuario = usuarioBuscado[0].id;
-              const postagem : Postagem = new Postagem(titulo, texto, idUsuario);
-              this.postagemRest.inserir(postagem).subscribe(
-                {
-                  next: postagemInserida => {
-                    if(postagemInserida.id != undefined){
-                      this.servicoUsuario.adicionarPostUsuario(usuarioBuscado[0].cpf, postagemInserida.id)
-                    }
-                  }
+  criarPostagem(titulo: string, texto: string, link: string): void {
+    const cpfUsuario = this.localStorage.retornarUsuario("cpfUsuario");
+  
+    if (cpfUsuario != null) {
+      this.servicoUsuario.buscarUsuarioCpf(cpfUsuario).subscribe({
+        next: usuarioBuscado => {
+          if (usuarioBuscado && usuarioBuscado.id != undefined) {
+            const postagem: Postagem = new Postagem(usuarioBuscado.nomeUsuario, titulo, texto, usuarioBuscado.id, link);
+            
+            // Removendo o campo id antes de inserir no Firestore
+            delete postagem.id;
+            
+            // Inserindo a postagem e recebendo o ID gerado pelo Firestore
+            this.fireStore.inserir(postagem).subscribe({
+              next: postagemInserida => {
+                if (postagemInserida && postagemInserida.id != undefined) {
+                  // Adiciona o ID da postagem ao usuário
+                  this.servicoUsuario.adicionarPostUsuario(usuarioBuscado.cpf, postagemInserida.id);
+                  this.snackbar.exibirMensagem("Postagem criada com sucesso.");
+                } else {
+                  this.snackbar.exibirMensagem("Erro ao obter ID da postagem.");
                 }
-              );  
-            } else {
-              this.snackbar.exibirMensagem("Usuário não encontrado.")
-            }
+              },
+              error: () => {
+                this.snackbar.exibirMensagem("Erro ao criar a postagem.");
+              }
+            });
+  
+          } else {
+            this.snackbar.exibirMensagem("Usuário não encontrado.");
           }
+        },
+        error: () => {
+          this.snackbar.exibirMensagem("Erro ao buscar o usuário.");
         }
-      )
+      });
+    } else {
+      this.snackbar.exibirMensagem("CPF do usuário não encontrado no localStorage.");
     }
   }
-}
-
+}  

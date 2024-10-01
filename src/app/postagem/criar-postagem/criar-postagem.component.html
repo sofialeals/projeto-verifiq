@@ -2,6 +2,15 @@
     <form id="criar-postagem">
         <h1 id="titulo-postagem">Comunique seu problema</h1>
         <h2 id="subtitulo-postagem">Utilize esse espaço para receber ajuda. Não interaja com o conteúdo antes de ter certeza do seu caráter.</h2>
+
+        <form id="inserir-imagem">
+            <label for="add">
+                <mat-icon>add</mat-icon>
+                <p>Anexar imagem</p>
+            </label>
+            <input type="file" id="add" name="add" #inputImagem (change)="imagemCarregada($event)">
+        </form>
+
         <mat-form-field class="campo-postagem" subscriptSizing="dynamic">
             <mat-label>Título da postagem</mat-label>
             <input matInput name="titulo-postagem" [(ngModel)]="titulo"/>

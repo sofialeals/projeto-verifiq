@@ -6,7 +6,6 @@ import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from './localstorage.service';
 import { SnackBarService } from './snack-bar.service';
-import { Postagem } from '../model/postagem';
 
 @Injectable({
   providedIn: 'root'
@@ -21,64 +20,52 @@ export class UsuarioService {
     private snackbar : SnackBarService
   ) {}
 
-
   inserir(usuario: Usuario){
-    this.rest.buscarCpf(usuario.cpf).subscribe(
-      {
-        next: usuarioBuscado => {
-          if(usuarioBuscado.length === 0){
-            this.usernameExiste(usuario).subscribe(
-              {
-                next: resposta => {
-                  if(resposta){
-                    this.rest.inserir(usuario).subscribe(
-                      {
-                        next: usuarioInserido => {
-                          this.snackbar.exibirMensagem("Você foi cadastrado.");
-                          this.logarUsuario(usuario.cpf, usuario.senha)
-                          this.roteador.navigate(["/"]);
-                        }
-                      }
-                    );
-                  }
-                  else {
-                    this.snackbar.exibirMensagem("Esse nome de usuário já existe.")
-                  }
-                }
+    this.rest.buscarPorCpf(usuario.cpf).subscribe({
+      next: (usuarioBuscado) => {
+        this.snackbar.exibirMensagem(`O usuário com CPF ${usuarioBuscado.cpf} já está cadastrado`);
+      },
+      error: (erro) => {
+        if(erro.status === 404) {
+          this.rest.buscarNomeUsuario(usuario.nomeUsuario).subscribe({
+            next: (usuarioRetornado) => {
+              this.snackbar.exibirMensagem(`O nome de usuário ${usuarioRetornado.nomeUsuario} já está cadastrado`);
+            },
+            error: (erro) => {
+              if(erro.status === 404){
+                this.rest.inserir(usuario).subscribe({
+                  next: (usuarioInserido) => {
+                    this.snackbar.exibirMensagem("Você foi cadastrado.");
+                    this.localStorage.logarUsuario(usuarioInserido.cpf);
+                    this.roteador.navigate(["/"]);
+                  },
+                  error: (erro) => {
+                    this.snackbar.exibirMensagem("Erro durante cadastramento: "+erro);
+                  }});
               }
-            )
-          } else {
-            this.snackbar.exibirMensagem("O usuário já existe.")
-          }
-        }
+            }
+          })
+        } 
       }
-    )
+    })
   }
 
-  buscarUsuario(cpfUsuario: string){
-    return this.rest.buscarCpf(cpfUsuario);
+  buscarUsuarioCpf(cpfUsuario: string){
+    return this.rest.buscarPorCpf(cpfUsuario);
   }
 
-  usernameExiste(usuario: Usuario){
-    return this.rest.buscarUsername(usuario.nomeUsuario).pipe(
-      switchMap(usuarioBuscado => {
-        if(usuarioBuscado.length === 0) {
-          return of(true);
-        } else {
-          return of(false);
-        }
-      })
-    );
+  buscarUsuarioId(idUsuario: number){
+    return this.rest.buscarPorId(idUsuario);
   }
 
-  logarUsuario(cpfUsuario: string, senhaUsuario: string) {
-    this.rest.buscarCpf(cpfUsuario).subscribe(
-      {
-        next: usuarioRetornado => {
-          if(usuarioRetornado.length > 0) {
-            if(usuarioRetornado[0].senha === senhaUsuario){
-              this.localStorage.logarUsuario(cpfUsuario);
-
+  
+  logarUsuario(cpf: string, senha: string) {
+    this.rest.buscarPorCpf(cpf).subscribe({
+      next: usuarioRetornado => {
+        this.rest.verificarSenha([cpf, senha]).subscribe({
+          next: verificacao => {
+            if(verificacao){
+              this.localStorage.logarUsuario(usuarioRetornado.cpf);
               const botaoPressionado = this.rota.snapshot.queryParamMap.get('returnUrl');
               if(botaoPressionado === '0'){
                 this.roteador.navigate(["/criar-postagem"]);
@@ -88,29 +75,47 @@ export class UsuarioService {
                 this.roteador.navigate(["/"]);
               }
             } else {
-              this.snackbar.exibirMensagem("Senha incorreta. Tente novamente.");
+              this.snackbar.exibirMensagem("Senha incorreta.");
             }
+          },
+          error: (erro) => {
+            this.snackbar.exibirMensagem("Erro de autenticação: "+erro);
           }
-          else {
-            this.snackbar.exibirMensagem(`O usuário de CPF ${cpfUsuario} não existe.`);
-          }
+        })
+      },
+      error: erro => {
+        if(erro.status === 404){
+          this.snackbar.exibirMensagem(`O usuário de CPF ${cpf} não existe.`);
         }
       }
-    )
+    })
   }
 
   adicionarPostUsuario(cpfUsuario: string, idNovaPost: string){
-    this.rest.buscarCpf(cpfUsuario).subscribe(
+    this.rest.buscarPorCpf(cpfUsuario).subscribe(
       {
         next: usuarioBuscado => {
-          const postsAtualizados = [...usuarioBuscado[0].postagens, idNovaPost];
-          if(usuarioBuscado[0].id != undefined){
-            this.rest.atualizarPostsUsuario(usuarioBuscado[0].id, postsAtualizados).subscribe(
-              {
-                next: resposta => this.snackbar.exibirMensagem('Postagem inserida. Acompanhe o progresso por meio da aba "Minhas postagens".')
+          if(usuarioBuscado.id != undefined){
+            this.rest.buscarPostagens(usuarioBuscado.id).subscribe({
+              next: usuarioPostagens => {
+                let postagens = usuarioPostagens.postagens;
+                console.log(postagens)
+                let postsAtualizados = [...postagens, idNovaPost];
+                console.log(postsAtualizados)
+                if(usuarioBuscado.id != undefined){
+                  this.rest.atualizarPostsUsuario(usuarioBuscado.id, postsAtualizados).subscribe({
+                      next: resposta =>{
+                        this.snackbar.exibirMensagem('Postagem inserida. Acompanhe o progresso por meio da aba "Minhas postagens".')
+                      }, error: erro => {
+                        this.snackbar.exibirMensagem("Não foi possível atualizar as postagens do usuário.")
+                      }
+                    })
+                }
+              }, error: erro => {
+                this.snackbar.exibirMensagem("Não foi possível encontrar as postagens do usuário com ID "+usuarioBuscado.id)
               }
-            )
-          }
+            })
+          }          
         }
       }
     )

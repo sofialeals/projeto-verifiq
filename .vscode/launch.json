@@ -3,6 +3,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "VerifiqSpringApplication",
+      "request": "launch",
+      "mainClass": "com.example.verifiq_spring.VerifiqSpringApplication",
+      "projectName": "verifiq_spring"
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",

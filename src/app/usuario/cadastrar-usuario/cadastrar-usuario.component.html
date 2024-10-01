@@ -5,41 +5,44 @@
       alt="Serpente em volta de um smartphone"
     />
   </figure>
-  <form class="form-cadastro">
-    <p class="titulo-campo">CPF:</p>
-    <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
-      <input matInput [(ngModel)]="usuario.cpf" name="cpf" />
-    </mat-form-field>
 
-    <p class="titulo-campo">Nome:</p>
+  <form [formGroup]="formulario" class="form-cadastro" (ngSubmit)="cadastrarUsuario()">
+    <label for="cpf" class="titulo-campo">CPF:</label>
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
-      <input matInput [(ngModel)]="usuario.nome" name="nome" />
+      <input matInput [(ngModel)]="usuario.cpf" formControlName="cpf"/>
     </mat-form-field>
+    <span class="erro-form" *ngIf="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched">Insira 11 dígitos numéricos.</span>
 
-    <p class="titulo-campo">Nome de usuário:</p>
+    <label for="nome" class="titulo-campo">Nome:</label>
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
-      <input
-        matInput
-        [(ngModel)]="usuario.nomeUsuario"
-        name="nomeUsuario"
-      />
+      <input matInput [(ngModel)]="usuario.nome" formControlName="nome"/>
     </mat-form-field>
+    <span class="erro-form" *ngIf="formulario.get('nome')?.invalid && formulario.get('nome')?.touched">Insira apenas letras.</span>
 
-    <p class="titulo-campo">Senha:</p>
+    <label class="titulo-campo">Nome de usuário:</label>
+    <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
+      <input matInput [(ngModel)]="usuario.nomeUsuario" formControlName="nomeUsuario"/>
+    </mat-form-field>
+    <span class="erro-form" *ngIf="formulario.get('nomeUsuario')?.invalid && formulario.get('nomeUsuario')?.touched">Insira até 10 caracteres alfanuméricos.</span>
+
+    <label class="titulo-campo">Senha:</label>
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input
         matInput
         type="password"
         [(ngModel)]="usuario.senha"
-        name="senhaUsuario"
+        formControlName="senha"
       />
     </mat-form-field>
+    <span class="erro-form" *ngIf="formulario.get('senha')?.invalid && formulario.get('senha')?.touched">Insira pelo menos 8 caracteres alfanuméricos.</span>
 
-    <button class="botao-cadastro" (click)="cadastrarUsuario()">
+    <button class="botao-cadastro" [disabled]="formulario.invalid" type="submit">
       Cadastrar
     </button>
-    <button class="botao-login" [routerLink]="['/login-usuario']">
-      Já tem uma conta? Entre agora.
-    </button>
   </form>
+
+  <button  class="botao-login" [routerLink]="['/login-usuario']">
+    Já tem uma conta? Entre agora.
+  </button>
+
 </main>

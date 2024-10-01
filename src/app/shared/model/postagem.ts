@@ -1,20 +1,20 @@
 export class Postagem {
     id?: string;
-    titulo: string;
+    username : string;
+    titulo: string 
     texto : string;
+    link: string;
     like: Number = 0;
     dislike : Number = 0;
-    idUsuario : string;
+    idUsuario : number;
     status : string;
-    // midia : string;
 
-    constructor(titulo: string, texto: string, usuario: string) {
+    constructor(username: string, titulo: string, texto: string, idUsuario: number, link: string) {
+        this.username = username;
         this.titulo = titulo;
         this.texto = texto;
-        this.idUsuario = usuario;
-        this.status = "indefinida";
-        // this.midia = midia;
+        this.idUsuario = idUsuario;
+        this.link = link;
+        this.status = "aberta";
     }
-
-    
 }

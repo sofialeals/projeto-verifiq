@@ -34,7 +34,7 @@
           Meu perfil
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Minhas postagens</button>
+          <button mat-menu-item [routerLink]="['/minhas-postagens']">Minhas postagens</button>
           <button mat-menu-item (click)="deslogar()">Sair</button>
         </mat-menu>
       </li>

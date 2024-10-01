@@ -8,6 +8,7 @@ import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FirestoreModule } from './shared/firestore/firestore.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     PostagemModule,
     MaterialModule,
     RouterModule,
+    FirestoreModule
 
   ],
   exports: [

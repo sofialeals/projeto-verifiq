@@ -46,6 +46,15 @@ main {
 .campo-cadastro {
   width: 50%;
   margin: 0.5rem 0;
+  padding: 0;
+}
+
+.erro-form {
+  width: 50%;
+  font-size: 0.8rem;
+  color: #ffffff;
+  margin-top: -0.3rem;
+  margin-bottom: 1rem;
 }
 
 .botao-cadastro {
@@ -72,6 +81,10 @@ main {
 @media only screen and (max-width: 1024px) {
   .titulo-campo {
     font-size: 1.5vw;
+  }
+
+  .erro-form {
+    font-size: 1.3vw;
   }
 
   .botao-cadastro {
@@ -111,6 +124,11 @@ main {
 
   .campo-cadastro {
     width: 80%;
+  }
+
+  .erro-form {
+    width: 80%;
+    font-size: 2vw;
   }
 
   .botao-cadastro {

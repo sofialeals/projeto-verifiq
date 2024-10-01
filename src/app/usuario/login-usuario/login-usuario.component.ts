@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { UsuarioService } from '../../shared/service/usuario.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { LocalStorageService } from '../../shared/service/localstorage.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SnackBarService } from '../../shared/service/snack-bar.service';
 
 @Component({
   selector: 'app-login-usuario',
