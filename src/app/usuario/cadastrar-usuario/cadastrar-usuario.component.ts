@@ -20,7 +20,7 @@ export class CadastrarUsuarioComponent {
   ){
     this.formulario = this.construtorForm.group({
       cpf: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
-      nome: ['', [Validators.required, Validators.pattern("[a-zA-Z]+")]],
+      nome: ['', [Validators.required, Validators.pattern("[a-zA-Z\s]+")]],
       nomeUsuario: ['', [Validators.required, Validators.maxLength(10), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
       senha: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/)]]
     })
