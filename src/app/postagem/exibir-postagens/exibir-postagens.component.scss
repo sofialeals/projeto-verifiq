@@ -14,6 +14,16 @@ main {
     background-color: #ffffff;
 }
 
+.exibicao-postagens {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
 .espaco-postagens {
     width: 90%;
     display: flex;
@@ -44,8 +54,9 @@ main {
 }
 
 #subtitulo-lista-postagens{
-    width: 50%;
+    width: 60%;
     color: #ffffff;
+    font-size: 1.5vw;
     font-weight: normal;
     margin: 1rem 0;
 }
@@ -73,14 +84,16 @@ figure img {
 
 .titulo-postagem {
     margin: 0.5rem 0rem;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .texto-postagem {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Postagem } from '../../shared/model/postagem';
+import { PostagemService } from '../../shared/service/postagem.service';
 import { FirestoreService } from '../../shared/service/firestore.service';
 import { UsuarioService } from '../../shared/service/usuario.service'
 
@@ -11,14 +12,24 @@ import { UsuarioService } from '../../shared/service/usuario.service'
 export class ExibirPostagensComponent {
   postagensEmAberto: Postagem[] = [];
   postagensEncerradas: Postagem[] = [];
- 
+  mostrarSecao: boolean[] = [true, false];
+  desabilitados: boolean = false;
   
   constructor(
     private firestoreService: FirestoreService,
-    private  usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private postagemService: PostagemService
   ) {
     this.buscarPostsEmAberto();
     this.buscarPostsEncerrados();
+  }
+
+  // desabilitarBotoes(postagem: Postagem){
+  //   this.postagemService.desabilitar(postagem);
+  // }
+
+  contarVoto(postagem: Postagem, voto: string){
+    this.postagemService.contabilizar(postagem, voto);
   }
 
   buscarPostsEmAberto(){
@@ -43,5 +54,13 @@ export class ExibirPostagensComponent {
         return erro;
       }
     })
+  }
+
+  mostrarPostagens(secao: string){
+    if(secao === "abertas"){
+      this.mostrarSecao = [true, false]
+    } else {
+      this.mostrarSecao = [false, true]
+    }
   }
 }

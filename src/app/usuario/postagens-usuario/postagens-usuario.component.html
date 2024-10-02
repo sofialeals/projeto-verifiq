@@ -1,98 +1,110 @@
 <main>
-
-    <h1 id="titulo">Minhas dúvidas:</h1>
-
-    <div>
-        <p>Em aberto</p>
-        @for (postagem of postagensEmAberto; track $index){
-            <mat-card class="postagem">
+    <div id="titulo-subtitulo">
+        <h1 class="fontForte" id="titulo">Minhas dúvidas</h1>
+        <h2 id="subtitulo">Verifique como suas dúvidas estão sendo avaliadas pelos usuários da plataforma. Você também pode encerrar uma votação ou excluir uma postagem.</h2>
+    </div>
     
-                <button mat-icon-button class="excluir-postagem" (click)="apagarPostagem(postagem.id)"><mat-icon>delete</mat-icon></button>
-                <h1 class="titulo-postagem">{{ postagem.titulo }}</h1>
-                <div class="conteudo-postagem">
-                    <figure>
-                        <img [src]="postagem.link" alt="Imagem postagem">
-                    </figure>
-            
-                    <mat-card-actions class="discussao">
-                        <div class="votos">
-                            <div class="voto negativo">
-                                <p>Votos<br>negativos</p>
-                                <h1>{{ postagem.dislike }}</h1>
-                            </div>
-                            <div class="voto positivo">
-                                <p>Votos<br>positivos</p>
-                                <h1>{{ postagem.like }}</h1>
-                            </div>
-                        </div>
-                        
-                        <div *ngIf="postagem.dislike > postagem.like">
-                            <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="negativo">perigoso</mark>.</p>
-                            <p class="texto-discussao negativo">Não interaja nem informe seus dados pessoais.</p>
-                        </div>
+    
+
+    <div class="area-postagens">
+        <h3 class="titulo-area">Postagens em votação</h3>
+        <h4 *ngIf="postagensEmAberto.length === 0">Você ainda não tem postagens em aberto.</h4> <!-- só aparece quando o usuário não tem nenhuma postagem em aberto -->
+        <button *ngIf="postagensEmAberto.length === 0" class="criar-postagem" [routerLink]="['/criar-postagem']">Crie uma agora mesmo</button>
+
+        <div class="postagens" *ngIf="postagensEmAberto.length > 0"> <!-- só aparece quando o usuário tem postagens em aberto -->
+            @for (postagem of postagensEmAberto; track $index){
+                <mat-card class="postagem">
         
-                        <div class="textos-discussao" *ngIf="postagem.like > postagem.dislike">
-                            <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="positivo">positivo</mark>.</p>
-                            <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
-                        </div>
-    
-                        <div class="textos-discussao" *ngIf="postagem.dislike == postagem.like">
-                            <p class="texto-discussao">A votação está empatada.</p>
-                            <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
-                        </div>
-                        
-                        <button mat-fab extended class="botao-encerrar" (click)="atualizarPostagem(postagem)">
-                            <mat-icon>front_hand</mat-icon>
-                            Encerrar discussão
-                        </button>
-                    </mat-card-actions>
-                </div>
+                    <button mat-icon-button class="excluir-postagem" (click)="apagarPostagem(postagem.id)"><mat-icon>delete</mat-icon></button>
+                    <h1 class="titulo-postagem">{{ postagem.titulo }}</h1>
+                    <div class="conteudo-postagem">
+                        <figure>
+                            <img [src]="postagem.link" alt="Imagem postagem">
+                        </figure>
                 
-            </mat-card>
-        }
+                        <mat-card-actions class="discussao">
+                            <div class="votos">
+                                <div class="voto negativo">
+                                    <p>Votos<br>negativos</p>
+                                    <h1>{{ postagem.dislike }}</h1>
+                                </div>
+                                <div class="voto positivo">
+                                    <p>Votos<br>positivos</p>
+                                    <h1>{{ postagem.like }}</h1>
+                                </div>
+                            </div>
+                            
+                            <div *ngIf="postagem.dislike > postagem.like">
+                                <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="negativo">perigoso</mark>.</p>
+                                <p class="texto-discussao negativo">Não interaja nem informe seus dados pessoais.</p>
+                            </div>
+            
+                            <div class="textos-discussao" *ngIf="postagem.like > postagem.dislike">
+                                <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="positivo">positivo</mark>.</p>
+                                <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
+                            </div>
+        
+                            <div class="textos-discussao" *ngIf="postagem.dislike == postagem.like">
+                                <p class="texto-discussao">A votação está empatada.</p>
+                                <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
+                            </div>
+                            
+                            <button mat-fab extended class="botao-encerrar" (click)="atualizarPostagem(postagem)">
+                                <mat-icon>front_hand</mat-icon>
+                                Encerrar discussão
+                            </button>
+                        </mat-card-actions>
+                    </div>
+                    
+                </mat-card>
+            }
+        </div>
     </div>
 
-    <div>
-        <p>Encerradas</p>
-        @for (postagem of postagensEncerradas; track $index){
-            <mat-card class="postagem">
-
-                <button mat-icon-button class="excluir-postagem" (click)="apagarPostagem(postagem.id)"><mat-icon>delete</mat-icon></button>
-                <h1 class="titulo-postagem">{{ postagem.titulo }}</h1>
-                <div class="conteudo-postagem">
-                    <figure>
-                        <img [src]="postagem.link" alt="Imagem postagem">
-                    </figure>
+    <div class="area-postagens">
+        <h3 class="titulo-area">Postagens encerradas</h3>
+        <h4 *ngIf="postagensEncerradas.length === 0">Você ainda não tem postagens encerradas.</h4> <!-- só aparece quando o usuário não tem nenhuma postagem encerrada -->
+        <div class="postagens" *ngIf="postagensEncerradas.length > 0"> <!-- só aparece quando o usuário tem postagens encerradas -->
+            @for (postagem of postagensEncerradas; track $index){
+                <mat-card class="postagem">
+    
+                    <button mat-icon-button class="excluir-postagem" (click)="apagarPostagem(postagem.id)"><mat-icon>delete</mat-icon></button>
+                    <h1 class="titulo-postagem">{{ postagem.titulo }}</h1>
+                    <div class="conteudo-postagem">
+                        <figure>
+                            <img [src]="postagem.link" alt="Imagem postagem">
+                        </figure>
+                
+                        <mat-card-actions class="discussao">
+                            <div class="votos">
+                                <div class="voto negativo">
+                                    <p>Votos<br>negativos</p>
+                                    <h1>{{ postagem.dislike }}</h1>
+                                </div>
+                                <div class="voto positivo">
+                                    <p>Votos<br>positivos</p>
+                                    <h1>{{ postagem.like }}</h1>
+                                </div>
+                            </div>
+                            
+                            <div *ngIf="postagem.dislike > postagem.like">
+                                <p class="texto-discussao">O conteúdo foi avaliado como <mark class="negativo">perigoso</mark>.</p>
+                                <p class="texto-discussao negativo">Não interaja nem informe seus dados pessoais.</p>
+                            </div>
             
-                    <mat-card-actions class="discussao">
-                        <div class="votos">
-                            <div class="voto negativo">
-                                <p>Votos<br>negativos</p>
-                                <h1>{{ postagem.dislike }}</h1>
+                            <div class="textos-discussao" *ngIf="postagem.like > postagem.dislike">
+                                <p class="texto-discussao">O conteúdo foi avaliado como <mark class="positivo">positivo</mark>.</p>
+                                <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
                             </div>
-                            <div class="voto positivo">
-                                <p>Votos<br>positivos</p>
-                                <h1>{{ postagem.like }}</h1>
+    
+                            <div class="textos-discussao" *ngIf="postagem.dislike == postagem.like">
+                                <p class="texto-discussao">A votação foi encerrada em empate.</p>
+                                <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
                             </div>
-                        </div>
-                        
-                        <div *ngIf="postagem.dislike > postagem.like">
-                            <p class="texto-discussao">O conteúdo foi avaliado como <mark class="negativo">perigoso</mark>.</p>
-                            <p class="texto-discussao negativo">Não interaja nem informe seus dados pessoais.</p>
-                        </div>
-        
-                        <div class="textos-discussao" *ngIf="postagem.like > postagem.dislike">
-                            <p class="texto-discussao">O conteúdo foi avaliado como <mark class="positivo">positivo</mark>.</p>
-                            <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
-                        </div>
-
-                        <div class="textos-discussao" *ngIf="postagem.dislike == postagem.like">
-                            <p class="texto-discussao">A votação foi encerrada em empate.</p>
-                            <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
-                        </div>
-                    </mat-card-actions>
-                </div>     
-            </mat-card>
-        }
+                        </mat-card-actions>
+                    </div>     
+                </mat-card>
+            }
+        </div>
     </div>
 </main>

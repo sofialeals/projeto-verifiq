@@ -5,7 +5,7 @@ header {
     justify-content: space-between;
     padding: 1.5rem 4rem;
   }
-
+ 
 #logo {
   width: 100px;
   background-color: #ffffff;
@@ -24,6 +24,11 @@ header {
 
 #botoes-header li {
   margin: 0 1rem;
+}
+
+.fontForte {
+  font-weight: 800;
+  color: #dbfcb0;
 }
 
 .botao-header {
@@ -133,6 +138,7 @@ main {
   align-items: center;
   align-content: center;
   padding: 5rem 0;
+  color: #dbfcb0;
 }
 
 #sobre-conteudo {

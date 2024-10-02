@@ -103,8 +103,10 @@ public class UsuarioControlador {
         return ResponseEntity.ok(new UsuarioPostagensDTO(usuario));
     }
 
-    @DeleteMapping
-    public void remover(@RequestParam("cpf") String cpf) {
-        this.service.remover(cpf);
+    @DeleteMapping("/{id}/excluir-postagem/{idPostagem}")
+    public void remover(@PathVariable("idPostagem") String idPostagem, @PathVariable("id") Long idUsuario) {
+        Usuario usuario = this.service.getUsuarioPorId(idUsuario);
+        usuario.getPostagens().remove(idPostagem);
+        this.service.atualizar(usuario);
     }
 }

@@ -29,6 +29,34 @@ export class PostagemService {
     })
   }
 
+  contabilizar(postagem: Postagem, voto: string){
+    if(voto === "like"){
+      postagem.like = Number(postagem.like) + 1;
+    } else {
+      postagem.dislike = Number(postagem.dislike) + 1;
+    }
+    return this.fireStore.atualizar(postagem).subscribe({
+      next: resposta => {
+        return resposta;
+      },
+      error: erro => {
+        return erro;
+      }
+    })
+  }
+
+  // desabilitar(postagem: Postagem){
+  //   postagem.desabilitada = true;
+  //   return this.fireStore.atualizar(postagem).subscribe({
+  //     next: resposta => {
+  //       this.snackbar.exibirMensagem("Agradecemos pela sua contribuição.")
+  //     },
+  //     error: erro => {
+  //       this.snackbar.exibirMensagem("Ocorreu um erro ao votar na postagem.")
+  //     }
+  //   })
+  // }
+
   criarPostagem(titulo: string, texto: string, link: string): void {
     const cpfUsuario = this.localStorage.retornarUsuario("cpfUsuario");
   
@@ -47,7 +75,6 @@ export class PostagemService {
                 if (postagemInserida && postagemInserida.id != undefined) {
                   // Adiciona o ID da postagem ao usuário
                   this.servicoUsuario.adicionarPostUsuario(usuarioBuscado.cpf, postagemInserida.id);
-                  this.snackbar.exibirMensagem("Postagem criada com sucesso.");
                 } else {
                   this.snackbar.exibirMensagem("Erro ao obter ID da postagem.");
                 }

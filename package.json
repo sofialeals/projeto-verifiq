@@ -23,7 +23,8 @@
     "@angular/router": "^18.1.0",
     "@ngx-env/builder": "^18.0.1",
     "@supabase/supabase-js": "^2.45.1",
-    "firebase": "^10.13.1",
+    "firebase": "^10.14.0",
+    "material-symbols": "^0.24.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

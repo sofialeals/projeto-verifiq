@@ -44,6 +44,10 @@ export class PostagensUsuarioComponent {
         }
       })
     }
+
+    if(id != null && this.cpfUsuario != null){
+      this.usuarioService.removerPostUsuario(this.cpfUsuario, id);
+    }
   }
   
   buscarPostsEmAberto(){

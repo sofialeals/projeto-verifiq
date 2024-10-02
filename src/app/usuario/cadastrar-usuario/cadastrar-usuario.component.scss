@@ -39,7 +39,7 @@ main {
 .titulo-campo {
   width: 50%;
   color: #ffffff;
-  font-weight: bold;
+  
   font-size: 1rem;
 }
 
@@ -52,7 +52,7 @@ main {
 .erro-form {
   width: 50%;
   font-size: 0.8rem;
-  color: #ffffff;
+  color: #ff7575 ;
   margin-top: -0.3rem;
   margin-bottom: 1rem;
 }
@@ -72,11 +72,18 @@ main {
   background-color: #40c288;
 }
 
-.botao-login {
+#login {
   margin: 1rem 0;
   color: #ffffff;
   font-size: 1rem;
 }
+
+#botao-login {
+  margin: 1rem 0;
+  color: #beb0fc;
+  font-size: 1rem;
+}
+
 
 @media only screen and (max-width: 1024px) {
   .titulo-campo {

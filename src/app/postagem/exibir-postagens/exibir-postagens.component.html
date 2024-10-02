@@ -1,17 +1,16 @@
 <main>    
     <div class="espaco-postagens">
         <div id="titulo-subtitulo-postagens">
-            <h1 id="titulo-lista-postagens">Principais discussões</h1>
+            <h1 class="fontForte" id="titulo-lista-postagens">Principais discussões</h1>
             <h2 id="subtitulo-lista-postagens">Aqui você pode ajudar outras pessoas a identificarem conteúdos falsos ou golpes. Não deixe de participar das votações.</h2>
 
             <mat-button-toggle-group id="aberto-fechado">
-                <mat-button-toggle value="">Em aberto</mat-button-toggle>
-                <mat-button-toggle value="">Encerradas</mat-button-toggle>
-              </mat-button-toggle-group>
-              
+                <mat-button-toggle value="abertas" (click)="mostrarPostagens('abertas')">Em aberto</mat-button-toggle>
+                <mat-button-toggle value="encerradas" (click)="mostrarPostagens('encerradas')">Encerradas</mat-button-toggle>
+            </mat-button-toggle-group>
         </div>
 
-        <div>
+        <div *ngIf="mostrarSecao[0]" class="exibicao-postagens" id="postagens-abertas">
             @for (postagem of postagensEmAberto; track $index) {
                 <mat-card class="postagem">
                     <mat-card-actions class="botoes-acao">
@@ -39,14 +38,14 @@
                     </p>
                     
                     <mat-card-actions class="botoes-votar">
-                        <button mat-fab extended class="botao-votar like">
+                        <button mat-fab extended class="botao-votar like" (click)="contarVoto(postagem, 'like')">
                             <mat-card-content class="conteudo-botao">
                                 <mat-icon class="icone-botao">check</mat-icon>
                                 <p class="contagem-botao">{{ postagem.like }}</p>
                             </mat-card-content>
                         </button>
     
-                        <button mat-fab extended class="botao-votar dislike">
+                        <button mat-fab extended class="botao-votar dislike" (click)="contarVoto(postagem, 'dislike')">
                             <mat-card-content class="conteudo-botao">
                                 <mat-icon class="icone-botao">warning</mat-icon>
                                 <p class="contagem-botao">{{ postagem.dislike }}</p>
@@ -57,7 +56,7 @@
             }
         </div>
 
-        <div>
+        <div *ngIf="mostrarSecao[1]" class="exibicao-postagens" id="postagens-encerradas">
             @for (postagem of postagensEncerradas; track $index) {
                 <mat-card class="postagem">
                     <mat-card-actions class="botoes-acao">

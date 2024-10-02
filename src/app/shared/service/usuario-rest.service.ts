@@ -38,6 +38,10 @@ export class UsuarioRestService{
     return this.http.patch(`${this.rotaUsuarios}/${idUsuario}/postagens`, novasPostagens);
   }
 
+  removerPostUsuario(idUsuario: number, idPostagem: string): Observable<any>{
+    return this.http.delete(`${this.rotaUsuarios}/${idUsuario}/excluir-postagem/${idPostagem}`);
+  }
+
   verificarSenha(credenciais: string[]): Observable<any> {
     return this.http.post(`${this.rotaUsuarios}/autenticacao`, credenciais);
   }

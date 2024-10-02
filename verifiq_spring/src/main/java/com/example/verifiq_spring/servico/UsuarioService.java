@@ -1,6 +1,5 @@
 package com.example.verifiq_spring.servico;
 
-// import com.example.verifiq_spring.modelo.DadosUsuarioInserirDTO;
 import com.example.verifiq_spring.modelo.Usuario;
 import com.example.verifiq_spring.repositorio.UsuarioRepositorio;
 

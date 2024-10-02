@@ -11,19 +11,19 @@
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input matInput [(ngModel)]="usuario.cpf" formControlName="cpf"/>
     </mat-form-field>
-    <span class="erro-form" *ngIf="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched">Insira 11 dígitos numéricos.</span>
+    <span class="erro-form" *ngIf="formulario.get('cpf')?.invalid && formulario.get('cpf')?.touched">⚠⠀Insira 11 dígitos numéricos.</span>
 
     <label for="nome" class="titulo-campo">Nome:</label>
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input matInput [(ngModel)]="usuario.nome" formControlName="nome"/>
     </mat-form-field>
-    <span class="erro-form" *ngIf="formulario.get('nome')?.invalid && formulario.get('nome')?.touched">Insira apenas letras.</span>
+    <span class="erro-form" *ngIf="formulario.get('nome')?.invalid && formulario.get('nome')?.touched">⚠⠀Insira apenas letras.</span>
 
     <label class="titulo-campo">Nome de usuário:</label>
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
       <input matInput [(ngModel)]="usuario.nomeUsuario" formControlName="nomeUsuario"/>
     </mat-form-field>
-    <span class="erro-form" *ngIf="formulario.get('nomeUsuario')?.invalid && formulario.get('nomeUsuario')?.touched">Insira até 10 caracteres alfanuméricos.</span>
+    <span class="erro-form" *ngIf="formulario.get('nomeUsuario')?.invalid && formulario.get('nomeUsuario')?.touched">⚠⠀Insira até 10 caracteres alfanuméricos.</span>
 
     <label class="titulo-campo">Senha:</label>
     <mat-form-field subscriptSizing="dynamic" class="campo-cadastro">
@@ -34,15 +34,14 @@
         formControlName="senha"
       />
     </mat-form-field>
-    <span class="erro-form" *ngIf="formulario.get('senha')?.invalid && formulario.get('senha')?.touched">Insira pelo menos 8 caracteres alfanuméricos.</span>
+    <span class="erro-form" *ngIf="formulario.get('senha')?.invalid && formulario.get('senha')?.touched">⚠⠀Insira pelo menos 8 caracteres alfanuméricos.</span>
 
     <button class="botao-cadastro" [disabled]="formulario.invalid" type="submit">
       Cadastrar
     </button>
   </form>
 
-  <button  class="botao-login" [routerLink]="['/login-usuario']">
-    Já tem uma conta? Entre agora.
-  </button>
+  <p id="login">Já tem uma conta? <button id="botao-login" [routerLink]="['/login-usuario']">
+  Entre agora.</button></p>
 
 </main>

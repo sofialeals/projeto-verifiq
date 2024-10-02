@@ -99,13 +99,11 @@ export class UsuarioService {
             this.rest.buscarPostagens(usuarioBuscado.id).subscribe({
               next: usuarioPostagens => {
                 let postagens = usuarioPostagens.postagens;
-                console.log(postagens)
                 let postsAtualizados = [...postagens, idNovaPost];
-                console.log(postsAtualizados)
                 if(usuarioBuscado.id != undefined){
                   this.rest.atualizarPostsUsuario(usuarioBuscado.id, postsAtualizados).subscribe({
                       next: resposta =>{
-                        this.snackbar.exibirMensagem('Postagem inserida. Acompanhe o progresso por meio da aba "Minhas postagens".')
+                        this.snackbar.exibirMensagem('Postagem criada. Acompanhe o progresso por meio da aba "Minhas postagens".')
                       }, error: erro => {
                         this.snackbar.exibirMensagem("Não foi possível atualizar as postagens do usuário.")
                       }
@@ -119,5 +117,25 @@ export class UsuarioService {
         }
       }
     )
+  }
+
+  removerPostUsuario(cpfUsuario: string, idPostagem: string){
+    this.rest.buscarPorCpf(cpfUsuario).subscribe({
+        next: usuarioBuscado => {
+          if(usuarioBuscado.id != undefined){
+            this.rest.removerPostUsuario(usuarioBuscado.id, idPostagem).subscribe({
+              next: resposta => {
+                return resposta;
+              },
+              error: erro => {
+                return erro;
+              }
+            })
+          }          
+        },
+        error: erro => {
+          return erro;
+        }
+    })
   }
 }
