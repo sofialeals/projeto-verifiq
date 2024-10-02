@@ -1,7 +1,7 @@
 <main>
   <figure id="img-serpente">
     <img
-      src="https://i.imgur.com/jlQN3kI.png"
+      src="https://i.imgur.com/Q4VmCH5.gif"
       alt="Serpente em volta de um smartphone"
     />
   </figure>
@@ -21,8 +21,7 @@
     </mat-form-field>
     <button class="esqueci-senha">Esqueci a senha</button>
     <button class="botao-login" (click)="entrarUsuario()">Entrar</button>
-    <button class="botao-cadastro" [routerLink]="['/cadastrar-usuario']">
-      Ainda não tem uma conta? Cadastre-se agora.
-    </button>
+    <p id="cadastro">Ainda não tem uma conta? <button class="botao-cadastro"[routerLink]="['/cadastrar-usuario']">
+      Cadastre-se agora.</button></p>
   </form>
 </main>

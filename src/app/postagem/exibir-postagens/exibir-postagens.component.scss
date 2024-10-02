@@ -125,8 +125,18 @@ figure img {
     padding: 0;
 }
 
+.share:hover {
+    color: #855bf7;
+    transition: 0.5s;
+}
+
+.report:hover {
+    color: #ff0000;
+    transition: 0.5s;
+}
+
 .id-usuario {
-    color: #858585;
+    color: #686868;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
 }

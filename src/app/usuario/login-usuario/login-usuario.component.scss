@@ -39,7 +39,6 @@ main {
 .titulo-campo {
   width: 50%;
   color: #ffffff;
-  font-weight: bold;
   font-size: 1rem;
 }
 
@@ -55,6 +54,8 @@ main {
   width: 50%;
   margin: 0.5rem 0;
 }
+
+
 
 .botao-login {
   transition: 0.5s;
@@ -73,8 +74,18 @@ main {
 
 .botao-cadastro {
   margin: 1rem 0;
+  color: #beb0fc;
+  font-size: 1rem;
+}
+
+#cadastro{
+  margin: 1rem 0;
   color: #ffffff;
   font-size: 1rem;
+}
+
+.botao-cadastro:hover {
+  text-decoration-line:underline ;
 }
 
 @media only screen and (max-width: 1024px) {
