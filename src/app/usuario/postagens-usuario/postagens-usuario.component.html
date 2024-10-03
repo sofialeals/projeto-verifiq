@@ -35,12 +35,12 @@
                             </div>
                             
                             <div *ngIf="postagem.dislike > postagem.like">
-                                <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="negativo">perigoso</mark>.</p>
-                                <p class="texto-discussao negativo">Não interaja nem informe seus dados pessoais.</p>
+                                <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="negativo">falso</mark>.</p>
+                                <p class="texto-discussao negativo">Não compartilhe, não interaja nem informe dados pessoais.</p>
                             </div>
             
                             <div class="textos-discussao" *ngIf="postagem.like > postagem.dislike">
-                                <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="positivo">positivo</mark>.</p>
+                                <p class="texto-discussao">O conteúdo está sendo avaliado como <mark class="positivo">verdadeiro</mark>.</p>
                                 <p class="texto-discussao">Ainda assim, tenha <mark class="negativo">cuidado</mark> ao interagir.</p>
                             </div>
         
