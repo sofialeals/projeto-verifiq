@@ -1,3 +1,15 @@
+<h1>Descrição do Projeto:</h1>
+<h2>Descrição do Problema:</h2>
+<p>
+  O crescente número de casos de golpe que ocorrem por meio da internet torna urgente a prevenção desse tipo de ato. Quando concentramos a atenção do problema para um grupo de pessoas que não tem afinidade com sites, redes sociais e aparelhos digitais, a gravidade dessa questão aumenta. A ocorrência desse tipo de situação provoca prejuízos financeiros, psicológicos e sociais, além de que a recuperação dos usuários atingidos é lenta e os responsáveis pelo crime geralmente não são punidos.
+</p>
+<h2>Solução a ser implementada:</h2>
+<p>
+  Um sistema voltado a identificar conteúdos maliciosos por meio de votação pública. Permitirá que usuários desconfiados da integridade de certas mídias possam submetê-las ao site e receber ajuda a respeito delas por meio do julgamento de outras pessoas. O sistema atenderá todos os públicos, mas seu foco estará naqueles que têm pouca desenvoltura com o meio digital, pois eles, geralmente, são os mais atingidos pelo problema em questão.
+</p>
+
+---
+
 # ProjetoVerifiq
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
